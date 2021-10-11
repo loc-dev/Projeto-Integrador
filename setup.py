@@ -1,3 +1,5 @@
+# 00 - Descrevendo o projeto.
+
 from setuptools import find_packages, setup
 
 setup(

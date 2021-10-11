@@ -1,10 +1,10 @@
-#   01 - Estabelecendo a nossa fábrica de aplicativos
+# 01 - Estabelecendo a nossa fábrica de aplicativos.
 
 import os
 
 from flask import Flask
 
-
+# Definição das configurações para o aplicativo imu.
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
 
@@ -27,6 +27,7 @@ def create_app(test_config=None):
     def hello():
         return 'Ola'
 
+    # Importando o nosso Banco de Dados da raíz do pacote imu, e, chamando as funções para o aplicativo.
     from . import db
     db.init_app(app)
 
