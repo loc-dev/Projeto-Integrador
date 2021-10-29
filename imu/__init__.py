@@ -31,4 +31,8 @@ def create_app(test_config=None):
     from . import db
     db.init_app(app)
 
+    # Importando o Blueprint 'lang' da pasta fora da raíz do pacote imu.
+    from blueprints.lang import lang
+    app.register_blueprint(lang.bp)
+
     return app
