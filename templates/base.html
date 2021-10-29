@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}{% endblock %} - Info Mãos Unidas</title>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename='normalize.css') }}"> <!-- Definindo o normalize.css -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='all.css') }}"> <!-- Definindo o Font Awesome -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='contrast.css') }}"> <!-- Definindo o Ajuste de Contraste -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- Definindo o style.css -->
+        <script src="{{ url_for('static', filename='prefixfree.min.js') }}"></script> <!-- Definindo o prefix-free -->
+    </head>
+
+    <body>
+        {% block body %}{% endblock %}
+        <script src="{{ url_for('static', filename='contrast.class.js') }}"></script>
+    </body>
+</html>
