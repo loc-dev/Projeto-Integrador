@@ -19,9 +19,9 @@
                     <!-- <h1>Menu de Idioma</h1> -->
                     <ul>
                         <li><a role="link" href="#">Inglês</a></li>
-                        <li><a role="link" href="{{ url_for('lang.spain') }}">Espanhol</a></li>
+                        <li><a role="link" href="#">Espanhol</a></li>
                         <li><a role="link" href="#">Francês</a></li>
-                        <li><a role="link" href="#">Português</a></li>
+                        <li><a role="link" href="{{ url_for('lang.portuguese') }}">Português</a></li>
                     </ul>
                 </div>
 
@@ -42,7 +42,7 @@
                 <section id="conteudo" class="box-flags">
                     <h1>De qual país você é?</h1>
                     <div class="flags">
-                        <a href="#"><img alt="" src="{{ url_for('static', filename='venezuela.svg') }}"></a>
+                        <a href="#"><img alt="" src="{{ url_for('static', filename='img/flags/venezuela.svg') }}"></a>
                     </div>
                 </section>
             </main>
