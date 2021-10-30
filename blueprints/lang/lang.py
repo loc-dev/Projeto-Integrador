@@ -15,3 +15,8 @@ def portuguese():
 
     return render_template('pt_br/index.html')
 
+# Visualização com a função 'spanish'
+@bp.route('/es')
+def spanish():
+
+    return render_template('es_es/index.html')
