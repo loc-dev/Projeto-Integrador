@@ -35,4 +35,8 @@ def create_app(test_config=None):
     from blueprints.lang import lang
     app.register_blueprint(lang.bp)
 
+    # Importando o Blueprint 'content' da pasta fora da raíz do pacote imu.
+    from blueprints.content import content
+    app.register_blueprint(content.bp)
+
     return app

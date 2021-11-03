@@ -10,7 +10,7 @@ from flask import (
 bp = Blueprint('content', __name__)
 
 # Visualização em português sobre a página Home, com a função 'pt_home'
-@bp.route('/index')
+@bp.route('/home')
 def pt_home():
 
     return render_template('pt_br/home/home.html')
