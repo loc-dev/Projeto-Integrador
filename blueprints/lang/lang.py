@@ -13,10 +13,10 @@ bp = Blueprint('lang', __name__)
 @bp.route('/')
 def portuguese():
 
-    return render_template('pt_br/index.html')
+    return render_template('pt_br/landing_page.html')
 
 # Visualização com a função 'spanish'
 @bp.route('/es')
 def spanish():
 
-    return render_template('es_es/index.html')
+    return render_template('es_es/landing_page_es.html')

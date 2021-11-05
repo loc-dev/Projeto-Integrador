@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es-es">
+    <head>
+        {% block head %}
+        <meta charset="utf-8">
+        <title>Info Mãos Unidas</title>
+        <meta name="description" content="El Info Mãos Unidas presenta información esencial a los refugiados que se encuentran en territorio brasileño.">
+        <meta name="keywords" content="IMU, Info Mãos Unidas, info mãos unidas, refugiados venezuelanos, venezuela, brasil e refugiados">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/framework/normalize.css') }}"> <!-- Definindo o normalize.css -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/framework/all.css') }}"> <!-- Definindo o Font Awesome -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/framework/contrast.css') }}"> <!-- Definindo o Ajuste de Contraste -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"> <!-- Definindo a Formatação Geral -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/partials/header.css') }}"> <!-- Definindo a Formatação para o Cabeçalho -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/partials/page-base.css') }}"> <!-- Definindo a Formatação para o Landing Page -->
+        <script src="{{ url_for('static', filename='js/prefixfree.min.js') }}"></script> <!-- Definindo o prefix-free -->
+        {% endblock %}
+    </head>
+    
+    <body>
+        <div class="background-image">
+            <div class="filter">
+                <header>
+
+                    <nav id="menu_acessibilidade">
+                        <ul class="nav-list">
+                            <li><a role="link" href="#menu_idioma">Saltar al menú de idiomas</a></li>
+                            <li><a role="link" href="#conteudo">Saltar al contenido destacado</a></li>
+                            <li><a role="option" href="#altocontraste" id="altocontraste" onclick="window.toggleContrast()" onkeydown="window.toggleContrast()"><i class="fas fa-adjust"></i></a></li>
+                        </ul>
+                    </nav>
+
+                    <nav id="menu_idioma">
+                        <ul class="nav-list">
+                            <li><a role="link" href="#">Inglés</a></li>
+                            <li><a role="link" href="{{ url_for('lang.spanish') }}">Español</a></li>
+                            <li><a role="link" href="#">Francés</a></li>
+                            <li><a role="link" href="{{ url_for('lang.portuguese') }}">Portugués</a></li>
+                        </ul>
+                    </nav>
+
+                </header>
+
+                <main>
+                    <section id="conteudo" class="box-flags">
+                        <h1 lang="es-es">¿De qué país eres?</h1>
+                        <div class="flags">
+                            <a href="#"><img alt="Icono circular de una bandera venezolana" src="{{ url_for('static', filename='img/flags/venezuela.svg') }}"></a>
+                        </div>
+                    </section>
+                </main>
+
+                <footer>
+                    <div class="logo_footer">
+                        <img alt="Logotipo de Info Mãos Unidas en la parte inferior de la aplicación" src="{{ url_for('static', filename='img/logo/logo.png') }}">
+                    </div>
+                    <p>@ Copyright 2021 por Info Mãos Unidas.</p>
+                </footer>
+            </div>
+        </div>
+
+        <script src="{{ url_for('static', filename='js/contrast.class.js') }}"></script>
+
+    </body>
+    
+</html>

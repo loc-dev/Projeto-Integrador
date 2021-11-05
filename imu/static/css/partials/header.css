@@ -1,0 +1,61 @@
+/* Formatação para o Menu de Acessibilidade e Principal */
+header {
+    position: relative;
+    /* background-color: lightcoral; */
+    height: 18vh;
+    width: 90%;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+nav#menu_acessibilidade {
+    /* background-color: lightseagreen; */
+    display: flex;
+    justify-content: space-between;
+    height: 4vh;
+    position: absolute;
+}
+
+nav#menu_idioma {
+    /* background-color: grey; */
+    display: flex;
+    justify-content: space-between;
+    height: 4vh;
+    position: absolute;
+    right: 0px;
+}
+
+nav#menu {
+    /* background-color: burlywood; */
+    height: 4vh;
+    display: flex;
+    position: absolute;
+    bottom: 30px;
+    right: 0px;
+}
+
+.logo {
+    position: absolute;
+    top: 35%;
+    right: 75%;
+}
+
+.nav-list li {
+    /* background-color: lightgreen; */
+    display: inline;
+    list-style: none;
+}
+
+.nav-list li a {
+    /* background-color: lightpink; */
+    display: inline-block;
+    padding: 2px 10px;
+    color: black;
+    text-decoration: none;
+}
+
+.nav-list li a:hover {
+    font-weight: bold;
+    border-bottom: 2px solid black;
+    transition: .1s;
+}

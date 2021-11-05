@@ -13,4 +13,10 @@ bp = Blueprint('content', __name__)
 @bp.route('/home')
 def pt_home():
 
-    return render_template('pt_br/home/home.html')
+    return render_template('pt_br/home/home_page.html')
+
+# Visualização em espanhol sobre a página Home, com a função 'es_home'
+@bp.route('/home/es')
+def es_home():
+
+    return render_template('es_es/home/home_page_es.html')

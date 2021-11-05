@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Info Mãos Unidas{% endblock %}
+    
+{% block body %}
+<div class="background-image">
+    <div class="filter">
+        <header>
+
+            <nav id="menu_acessibilidade">
+                <ul class="nav-list">
+                    <li><a role="link" href="#menu_idioma">Pular para o menu de idioma</a></li>
+                    <li><a role="link" href="#conteudo">Pular para o conteúdo em destaque</a></li>
+                    <li><a role="option" href="#altocontraste" id="altocontraste" onclick="window.toggleContrast()" onkeydown="window.toggleContrast()"><i class="fas fa-adjust"></i></a></li>
+                </ul>
+            </nav>
+
+            <nav id="menu_idioma">
+                <ul class="nav-list">
+                    <li><a role="link" href="#">Inglês</a></li>
+                    <li><a role="link" href="{{ url_for('lang.spanish') }}">Espanhol</a></li>
+                    <li><a role="link" href="#">Francês</a></li>
+                    <li><a role="link" href="{{ url_for('lang.portuguese') }}">Português</a></li>
+                </ul>
+            </nav>
+
+        </header>
+
+        <main>
+            <section id="conteudo" class="box-flags">
+                <h1>De qual país você é?</h1>
+                <div class="flags">
+                    <a href="{{ url_for('content.pt_home') }}"><img alt="Icone no formato circular de uma bandeira da Venezuela" src="{{ url_for('static', filename='img/flags/venezuela.svg') }}"></a>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="logo_footer">
+                <img alt="Logo do Info Mãos Unidas no rodapé da aplicação" src="{{ url_for('static', filename='img/logo/logo.png') }}">
+            </div>
+            <p>Copyright @ 2021 - Todos os direitos reservados pela Info Mãos Unidas.</p>
+        </footer>
+
+    </div>
+</div>
+{% endblock %}
