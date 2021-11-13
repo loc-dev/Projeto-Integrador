@@ -1,0 +1,155 @@
+{% extends 'es_es/model.html' %}
+{% block title %}Inicio{% endblock %}
+
+{% block body %}
+<header>
+
+    <nav id="menu_acessibilidade">
+        <ul class="nav-list">
+            <li><a role="link" href="#menu_idioma">Saltar al menú de idiomas</a></li>
+            <li><a role="link" href="#menu">Saltar al menú</a></li>
+            <li><a role="link" href="#conteudo">Saltar al contenido destacado</a></li>
+            <li><a role="option" href="#altocontraste" id="altocontraste" onclick="window.toggleContrast()" onkeydown="window.toggleContrast()"><i class="fas fa-adjust"></i></a></li>
+        </ul>
+    </nav>
+
+    <nav id="menu_idioma">
+        <ul class="nav-list">
+            <li><a role="link" href="#">Inglés</a></li>
+            <li><a role="link" href="{{ url_for('content.es_home') }}">Español</a></li>
+            <li><a role="link" href="#">Francés</a></li>
+            <li><a role="link" href="{{ url_for('content.pt_home') }}">Portugués</a></li>
+        </ul>
+    </nav>
+
+    <a role="link" class="logo" href="{{ url_for('content.es_home') }}"><img alt="Logo da página Info Mãos Unidas" src="{{ url_for('static', filename='img/logo/logo.png') }}"></a>
+
+    <nav id="menu">
+        <ul class="nav-list">
+            <li><a role="link" href="{{ url_for('content.pt_home') }}">Inicio</a></li>
+            <li><a role="link" href="#">Conócenos</a></li>
+            <li><a role="link" href="#">Crear una cuenta</a></li>
+            <li><a role="link" href="#">Iniciar sesión</a></li>
+        </ul>
+    </nav>
+
+</header>
+
+<main>
+
+    <hr class="line_menu">
+    <section id="conteudo" class="carousel-wrapper">
+        <div id="items">
+            <div class="item">
+                <figure>
+                    <a href="#">
+                        <img alt="Las niñas de varias nacionalidades sonriendo a la foto." src="{{ url_for('static', filename='img/carousel/people-gb996d54f1_640.jpg') }}">
+                    </a>
+                    <figcaption>
+                        <a href="#">La importancia de los servicios comunitarios</a>
+                        <br>
+                        <small>
+                            Los servicios comunitarios son los que más proporcionan recursos y asistencia a los refugiados
+                        </small>
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="item">
+                <figure>
+                    <a href="#">
+                        <img alt="Una mujer saltando en el aire, demostrando su felicidad" src="{{ url_for('static', filename='img/carousel/inspiration-gcfdb5fa1b_640.jpg') }}">
+                    </a>
+                    <figcaption>
+                        <a href="#">IFMT lanza un programa de formación profesional para refugiados</a>
+                        <br>
+                        <small>
+                            El Instituto Federal de Mato Grosso comparte conocimientos a través de iniciativas a distancia
+                        </small>
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="item">
+                <figure>
+                    <a href="#">
+                        <img alt="Uno camino del vías de tren" src="{{ url_for('static', filename='img/carousel/train-tracks-g683a789c7_640.jpg')}}">
+                    </a>
+                    <figcaption>
+                        <a href="#">Nuevas opciones con buenas oportunidades</a>
+                        <br>
+                        <small>
+                            Oportunidades que están surgiendo en el momento de la pandemia COVID-19
+                        </small>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <aside class="survey">
+        <h3>Encuesta</h3>
+        <p>Queremos saber un poco más sobre nuestra audiencia, así que responda una de las alternativas.</p>
+        <p>¿Qué contenido le gustaría tener en Info Mãos Unidas?</p>
+        <form>
+            <input type="checkbox" id="informacao" name="informacao1" value="1">
+            <label for="informacao1"> Consejos para el emprendimiento </label>
+            <br>
+            <input type="checkbox" id="informacao" name="informacao2" value="2">
+            <label for="informacao2"> Cursos de portugués disponibles </label>
+            <br>
+            <input type="checkbox" id="informacao" name="informacao3" value="3">
+            <label for="informacao3"> Talleres de desarrollo profesional </label>
+            <br>
+            <br>
+            <br>
+            <button class="button_form" type="submit" value="Confirmar">Confirmar</button>
+        </form>
+    </aside>
+
+    <hr class="line_section">
+    <section class="articles">
+        <h2>Artículos Recientes</h2>
+        <article class="article">
+            <!-- Título -->
+            <h3>La importancia de los servicios comunitarios</h3>
+            <!-- Imagem -->
+            <img alt="Las niñas de varias nacionalidades sonriendo a la foto." src="{{ url_for('static', filename='img/article/people-gb996d54f1_640.jpg') }}">
+            <!-- Descrição -->
+            <p>
+                Las alianzas con ONG e instituciones posibilitan el desarrollo de proyectos innovadores, servicios comunitarios que brindan más recursos y una atención adecuada donde se pueda atender a la mayoría, a fin de asegurar un refugio que posibilite su independencia y supervivencia en el país.
+            </p>
+            <button class="button_article" type="button"><a href="#">Lea mas</a></button>
+            <div class="clear"></div>
+        </article>
+    </section>
+    <div class="clear"></div>
+
+    <hr class="line_section">
+    <section class="articles">
+        <h2>Oportunidades</h2>
+        <article class="article">
+            <!-- Título -->
+            <h3>IFMT lanza un programa de formación profesional para refugiados</h3>
+            <!-- Imagem -->
+            <img alt="Una mujer saltando en el aire, demostrando su felicidad" src="{{ url_for('static', filename='img/article/inspiration-gcfdb5fa1b_640.jpg') }}">
+            <!-- Descrição -->
+            <p>
+                Las oportunidades brindan recursos que reflejan la probabilidad de permanencia. Los talleres, cursos y selección de trabajo tienen como objetivo la formación para una vida más sostenible, ofrecida por instituciones y casas.
+            </p>
+            <button class="button_article" type="button"><a href="#">Lea mas</a></button>
+            <div class="clear"></div>
+        </article>
+    </section>
+    <div class="clear"></div>
+
+</main>
+
+<footer>
+    <div class="logo_footer">
+        <img alt="Logotipo de Info Mãos Unidas en la parte inferior de la aplicación" src="{{ url_for('static', filename='img/logo/logo.png') }}">
+    </div>
+    <p>@ Copyright 2021 por Info Mãos Unidas.</p>
+</footer>
+
+<script src="{{ url_for('static', filename='js/carousel.js') }}"></script>
+
+{% endblock %}
