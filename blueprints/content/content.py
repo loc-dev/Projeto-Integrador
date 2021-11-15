@@ -20,3 +20,9 @@ def pt_home():
 def es_home():
 
     return render_template('es_es/home/home_page_es.html')
+
+# Visualização em português sobre a página Sobre nós, com a função 'pt_sobre'
+@bp.route('/sobre')
+def pt_sobre():
+
+    return render_template('pt_br/sobre/sobre_page.html')
