@@ -27,7 +27,7 @@
     <nav id="menu">
         <ul class="nav-list">
             <li><a role="link" href="{{ url_for('content.pt_home') }}">Home</a></li>
-            <li><a role="link" href="#">Sobre nós</a></li>
+            <li><a role="link" href="{{ url_for('content.pt_sobre')}}">Sobre nós</a></li>
             <li><a role="link" href="#">Cadastrar</a></li>
             <li><a role="link" href="#">Login</a></li>
         </ul>
@@ -43,7 +43,7 @@
             <div class="item">
                 <figure>
                     <a href="#">
-                        <img alt="Meninas de várias nacionalidades sorrindo para foto" src="{{ url_for('static', filename='img/carousel/people-gb996d54f1_640.jpg') }}">
+                        <img alt="Meninas de várias nacionalidades sorrindo para foto" src="{{ url_for('static', filename='img/carousel/people_640px.jpg') }}">
                     </a>
                     <figcaption>
                         <a href="#">A Importância dos Serviços Comunitários</a>
@@ -57,7 +57,7 @@
             <div class="item">
                 <figure>
                     <a href="#">
-                        <img alt="Uma mulher saltando no ar, demonstrando sua felicidade" src="{{ url_for('static', filename='img/carousel/inspiration-gcfdb5fa1b_640.jpg') }}">
+                        <img alt="Uma mulher saltando no ar, demonstrando sua felicidade" src="{{ url_for('static', filename='img/carousel/inspiration_640px.jpg') }}">
                     </a>
                     <figcaption>
                         <a href="#">IFMT lança um programa para capacitação profissional aos refugiados venezuelanos</a>
@@ -71,7 +71,7 @@
             <div class="item">
                 <figure>
                     <a href="#">
-                        <img alt="Passagem de trilho de trem" src="{{ url_for('static', filename='img/carousel/train-tracks-g683a789c7_640.jpg')}}">
+                        <img alt="Passagem de trilho de trem" src="{{ url_for('static', filename='img/carousel/train-tracks_640px.jpg')}}">
                     </a>
                     <figcaption>
                         <a href="#">Novas escolhas com boas oportunidades</a>
@@ -84,6 +84,42 @@
             </div>
         </div>
     </section>
+
+    <hr class="line_section">
+    <section class="articles">
+        <h2>Artigos Recentes</h2>
+        <article class="article">
+            <!-- Título -->
+            <h3>A Importância dos Serviços Comunitários</h3>
+            <!-- Imagem -->
+            <img alt="Meninas de várias nacionalidades sorrindo para foto" src="{{ url_for('static', filename='img/article/people_640px.jpg') }}">
+            <!-- Descrição -->
+            <p>
+                As parcerias com ong’s e instituições viabilizam o desenvolvimento projetos inovadores, serviços comunitários que possibilitem mais recursos e atendimento adequado onde possa atender a maioria, em busca de assegurar um refúgio que possibilite sua independência e sobrevivência no país.
+            </p>
+            <button class="button_article" type="button"><a href="#">Leia mais</a></button>
+            <div class="clear"></div>
+        </article>
+    </section>
+    <div class="clear"></div>
+
+    <hr class="line_section">
+    <section class="articles">
+        <h2>Oportunidades</h2>
+        <article class="article">
+            <!-- Título -->
+            <h3>IFMT lança um programa para capitação profissional aos refugiados venezuelanos</h3>
+            <!-- Imagem -->
+            <img alt="Uma mulher saltando no ar, demonstrando sua felicidade" src="{{ url_for('static', filename='img/article/inspiration_640px.jpg') }}">
+            <!-- Descrição -->
+            <p>
+                Oportunidades proporcionam recursos que reflete na probabilidade de permanência. Workshop, cursos e seletiva de empregos apresenta objetivo de capacitação para uma vida mais sustentável, oferecidas por instituições e casas.
+            </p>
+            <button class="button_article" type="button"><a href="#">Leia mais</a></button>
+            <div class="clear"></div>
+        </article>
+    </section>
+    <div class="clear"></div>
 
     <aside class="survey">
         <h3>Enquete</h3>
@@ -105,49 +141,13 @@
         </form>
     </aside>
 
-    <hr class="line_section">
-    <section class="articles">
-        <h2>Artigos Recentes</h2>
-        <article class="article">
-            <!-- Título -->
-            <h3>A Importância dos Serviços Comunitários</h3>
-            <!-- Imagem -->
-            <img alt="Meninas de várias nacionalidades sorrindo para foto" src="{{ url_for('static', filename='img/article/people-gb996d54f1_640.jpg') }}">
-            <!-- Descrição -->
-            <p>
-                As parcerias com ong’s e instituições viabilizam o desenvolvimento projetos inovadores, serviços comunitários que possibilitem mais recursos e atendimento adequado onde possa atender a maioria, em busca de assegurar um refúgio que possibilite sua independência e sobrevivência no país.
-            </p>
-            <button class="button_article" type="button"><a href="#">Leia mais</a></button>
-            <div class="clear"></div>
-        </article>
-    </section>
-    <div class="clear"></div>
-
-    <hr class="line_section">
-    <section class="articles">
-        <h2>Oportunidades</h2>
-        <article class="article">
-            <!-- Título -->
-            <h3>IFMT lança um programa para capitação profissional aos refugiados venezuelanos</h3>
-            <!-- Imagem -->
-            <img alt="Uma mulher saltando no ar, demonstrando sua felicidade" src="{{ url_for('static', filename='img/article/inspiration-gcfdb5fa1b_640.jpg') }}">
-            <!-- Descrição -->
-            <p>
-                Oportunidades proporcionam recursos que reflete na probabilidade de permanência. Workshop, cursos e seletiva de empregos apresenta objetivo de capacitação para uma vida mais sustentável, oferecidas por instituições e casas.
-            </p>
-            <button class="button_article" type="button"><a href="#">Leia mais</a></button>
-            <div class="clear"></div>
-        </article>
-    </section>
-    <div class="clear"></div>
-
 </main>
 
 <footer>
     <div class="logo_footer">
         <img alt="Logo do Info Mãos Unidas no rodapé da aplicação" src="{{ url_for('static', filename='img/logo/logo.png') }}">
     </div>
-    <p>Copyright @ 2021 - Todos os direitos reservados pela Info Mãos Unidas.</p>
+    <p>Copyright &copy; 2021 - Todos os direitos reservados pela Info Mãos Unidas</p>
 </footer>
 
 <script src="{{ url_for('static', filename='js/carousel.js') }}"></script>
