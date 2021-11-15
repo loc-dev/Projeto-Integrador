@@ -26,3 +26,9 @@ def es_home():
 def pt_sobre():
 
     return render_template('pt_br/sobre/sobre_page.html')
+
+# Visualização em espanhol sobre a página Sobre nós, com a função 'es_sobre'
+@bp.route('/sobre/es')
+def es_sobre():
+
+    return render_template('es_es/sobre/sobre_page_es.html')
