@@ -32,3 +32,9 @@ def pt_sobre():
 def es_sobre():
 
     return render_template('es_es/sobre/sobre_page_es.html')
+
+# Visualização em português sobre a página Cadastrar, com a função 'pt_cadastrar'
+@bp.route('/cadastrar')
+def pt_cadastrar():
+
+    return render_template('pt_br/cadastrar/cadastrar_page.html')
