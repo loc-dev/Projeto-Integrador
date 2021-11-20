@@ -6,40 +6,47 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 from imu.db import get_db
 
-bp = Blueprint('auth', __name__, url_prefix='/auth')
+bp = Blueprint('auth', __name__)
 
-#Foi definido essa rota para cadastro do refugiado.
-@bp.route('/register/', methods=('GET', 'POST'))
-def register():
+# Visualização em português sobre a página que contém o formulário de registro para o usuário Refugiado, com a função 'pt_cadastro_refugiado'
+@bp.route('/refugiado/', methods=('GET', 'POST'))
+def pt_cadastro_refugiado():
     if request.method == 'POST':
-        email = request.form['username']
-        senha = request.form['password']
+        nome = request.form['nome']
+        sobrenome = request.form['sobrenome']
+        nacionalidade = request.form['nacionalidade']
+        email = request.form['email']
+        senha = request.form['senha']
         db = get_db()
         error = None
 
-        if  not email and not senha:
-            error = 'Insira Usuário e Senha!'
+        if  not nome and not nacionalidade and not email and not senha:
+            error = 'Por favor, os campos com ( * ) são obrigatórios!'
+        elif not email and not senha:
+            error = 'Por favor, o E-mail e Senha são obrigatórios!'
+        elif not nome:
+            error = 'Por favor, o Nome é obrigatório.'
         elif not email:
-            error = 'Insira Usuário.'
+            error = 'Por favor, o E-mail é obrigatório.'
         elif not senha:
-            error = 'Insira Senha.'        
+            error = 'Por favor, a Senha é obrigatório.'
 
 
         if error is None:
             try:
                 db.execute(
-                    "INSERT INTO refugiado (email, senha) VALUES (?, ?)",
-                    (email, generate_password_hash(senha)),
+                    "INSERT INTO refugiado (nome, sobrenome, nacionalidade, email, senha) VALUES (?, ?, ?, ?, ?)",
+                    (nome, sobrenome, nacionalidade, email, generate_password_hash(senha)),
                 )
                 db.commit()
             except db.IntegrityError:
-                error = f"Usuario {email} já esta registrado."
+                error = f"O Usuário com {email} já está registrado."
             else:
                 return redirect(url_for("auth.login"))
 
         flash(error)
 
-    return render_template('register.html')
+    return render_template('pt_br/cadastrar/cadastrar_refugiado_page.html')
 
 #Foi definido essa rota para cadastro do voluntário.
 @bp.route('/register_voluntario/', methods=('GET', 'POST'))
