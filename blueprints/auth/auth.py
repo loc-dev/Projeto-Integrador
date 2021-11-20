@@ -9,7 +9,7 @@ from imu.db import get_db
 bp = Blueprint('auth', __name__)
 
 # Visualização em português sobre a página que contém o formulário de registro para o usuário Refugiado, com a função 'pt_cadastro_refugiado'
-@bp.route('/refugiado/', methods=('GET', 'POST'))
+@bp.route('/cadastrar/refugiado/', methods=('GET', 'POST'))
 def pt_cadastro_refugiado():
     if request.method == 'POST':
         nome = request.form['nome']
@@ -20,7 +20,7 @@ def pt_cadastro_refugiado():
         db = get_db()
         error = None
 
-        if  not nome and not nacionalidade and not email and not senha:
+        if  not nome and not email and not senha:
             error = 'Por favor, os campos com ( * ) são obrigatórios!'
         elif not email and not senha:
             error = 'Por favor, o E-mail e Senha são obrigatórios!'
