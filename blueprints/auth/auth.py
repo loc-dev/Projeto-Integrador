@@ -61,15 +61,15 @@ def es_cadastro_refugiado():
         error = None
 
         if  not nome and not email and not senha:
-            error = 'Por favor, os campos com ( * ) são obrigatórios!'
+            error = '¡Por favor, los campos con (*) son obligatorios!'
         elif not email and not senha:
-            error = 'Por favor, o E-mail e Senha são obrigatórios!'
+            error = '¡Por favor, el correo electrónico y contraseña son obligatorios!'
         elif not nome:
-            error = 'Por favor, o Nome é obrigatório.'
+            error = '¡Por favor, se requiere nombre!'
         elif not email:
-            error = 'Por favor, o E-mail é obrigatório.'
+            error = '¡Por favor, se require correo electrónico!'
         elif not senha:
-            error = 'Por favor, a Senha é obrigatório.'
+            error = '¡Por favor, se require contraseña!'
 
 
         if error is None:
@@ -80,7 +80,7 @@ def es_cadastro_refugiado():
                 )
                 db.commit()
             except db.IntegrityError:
-                error = f"O Usuário com {email} já está registrado."
+                error = f"El usuario con {email} ya esta registrado."
             else:
                 return redirect(url_for("auth.es_login_refugiado"))
 
