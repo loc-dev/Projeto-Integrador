@@ -31,7 +31,6 @@ def pt_cadastro_refugiado():
         elif not senha:
             error = 'Por favor, a Senha é obrigatório.'
 
-
         if error is None:
             try:
                 db.execute(
@@ -71,7 +70,6 @@ def es_cadastro_refugiado():
         elif not senha:
             error = '¡Por favor, se require contraseña!'
 
-
         if error is None:
             try:
                 db.execute(
@@ -87,6 +85,45 @@ def es_cadastro_refugiado():
         flash(error)
 
     return render_template('es_es/cadastrar/cadastrar_refugiado_page_es.html')
+
+# Visualização em português sobre a página que contém o formulário de registro para o usuário Voluntário, com a função 'pt_cadastro_voluntario'
+@bp.route('/cadastrar/voluntario/', methods=('GET', 'POST'))
+def pt_cadastro_voluntario():
+    if request.method == 'POST':
+        nome = request.form['nome']
+        sobrenome = request.form['sobrenome']
+        nacionalidade = request.form['nacionalidade']
+        email = request.form['email']
+        senha = request.form['senha']
+        db = get_db()
+        error = None
+
+        if not nome and not email and not senha:
+            error = 'Por favor, os campos com ( * ) são obrigatórios!'
+        elif not email and not senha:
+            error = 'Por favor, o E-mail e Senha são obrigatórios!'
+        elif not nome:
+            error = 'Por favor, o Nome é obrigatório.'
+        elif not email:
+            error = 'Por favor, o E-mail é obrigatório.'
+        elif not senha:
+            error = 'Por favor, a Senha é obrigatório.'
+        
+        if error is None:
+            try:
+                db.execute(
+                    "INSERT INTO voluntario (nome, sobrenome, nacionalidade, email, senha) VALUES (?, ?, ?, ?, ?)",
+                    (nome, sobrenome, nacionalidade, email, generate_password_hash(senha)),
+                )
+                db.commit()
+            except db.IntegrityError:
+                error = f"O Usuário com {email} já está registrado."
+            else:
+                return redirect(url_for("auth.pt_login_voluntario"))
+
+        flash(error)
+
+    return render_template('pt_br/cadastrar/cadastrar_voluntario_page.html')
 
 #Foi definido essa rota de login para refugiado.
 @bp.route('/login/', methods=('GET', 'POST'))
