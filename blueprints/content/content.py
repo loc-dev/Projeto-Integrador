@@ -44,3 +44,9 @@ def pt_cadastrar():
 def es_cadastrar():
 
     return render_template('es_es/cadastrar/cadastrar_page_es.html')
+
+# Visualização em português sobre a página Login, com a função 'pt_login'
+@bp.route('/login')
+def pt_login():
+
+    return render_template('pt_br/login/login_page.html')
