@@ -125,6 +125,45 @@ def pt_cadastro_voluntario():
 
     return render_template('pt_br/cadastrar/cadastrar_voluntario_page.html')
 
+# Visualização em espanhol sobre a página que contém o formulário de registro para o usuário Voluntário, com a função 'es_cadastro_voluntario'
+@bp.route('/cadastrar/voluntario/es', methods=('GET', 'POST'))
+def es_cadastro_voluntario():
+    if request.method == 'POST':
+        nome = request.form['nome']
+        sobrenome = request.form['sobrenome']
+        nacionalidade = request.form['nacionalidade']
+        email = request.form['email']
+        senha = request.form['senha']
+        db = get_db()
+        error = None
+
+        if not nome and not email and not senha:
+            error = '¡Por favor, los campos con (*) son obligatorios!'
+        elif not email and not senha:
+            error = '¡Por favor, el correo electrónico y contraseña son obligatorios!'
+        elif not nome:
+            error = '¡Por favor, se requiere nombre!'
+        elif not email:
+            error = '¡Por favor, se require correo electrónico!'
+        elif not senha:
+            error = '¡Por favor, se require contraseña!'
+
+        if error is None:
+            try:
+                db.execute(
+                    "INSERT INTO voluntario (nome, sobrenome, nacionalidade, email, senha) VALUES (?, ?, ?, ?, ?)",
+                    (nome, sobrenome, nacionalidade, email, generate_password_hash(senha)),
+                )
+                db.commit()
+            except db.IntegrityError:
+                error = f"El usuario con {email} ya esta registrado."
+            else:
+                return redirect(url_for("auth.es_login_voluntario"))
+
+        flash(error)
+
+    return render_template('es_es/cadastrar/cadastrar_voluntario_page_es.html')
+
 #Foi definido essa rota de login para refugiado.
 @bp.route('/login/', methods=('GET', 'POST'))
 def login():
