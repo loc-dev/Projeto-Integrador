@@ -179,7 +179,7 @@ def pt_login_refugiado():
         if refugiado is None:
             error = 'E-mail está incorreto!'
         elif not check_password_hash(refugiado['senha'], senha):
-            error = 'Senha está incorreta!.'
+            error = 'Senha está incorreta!'
 
         if error is None:
             session.clear()
@@ -189,6 +189,32 @@ def pt_login_refugiado():
         flash(error)
 
     return render_template('pt_br/login/login_refugiado_page.html')
+
+# Visualização em espanhol sobre a página que contém o formulário de login para o usuário Refugiado, com a função 'es_login_refugiado'
+@bp.route('/login/refugiado/es', methods=('GET', 'POST'))
+def es_login_refugiado():
+    if request.method == 'POST':
+        email = request.form['email']
+        senha = request.form['senha']
+        db = get_db()
+        error = None
+        refugiado = db.execute(
+            "SELECT * FROM refugiado WHERE email = ?", (email,)
+        ).fetchone()
+
+        if refugiado is None:
+            error = '¡El correo electrónico es incorrecto!'
+        elif not check_password_hash(refugiado['senha'], senha):
+            error = '¡La contraseña es incorrecta!'
+
+        if error is None:
+            session.clear()
+            session['refugiado_id'] = refugiado['id']
+            return redirect(url_for('index'))
+
+        flash(error)
+
+    return render_template('es_es/login/login_refugiado_page_es.html')
 
 #Foi definido essa rota de login para voluntario.
 @bp.route('/login_voluntario/', methods=('GET', 'POST'))
