@@ -9,7 +9,7 @@ from imu.db import get_db
 bp = Blueprint('auth', __name__)
 
 # Visualização em português sobre a página que contém o formulário de registro para o usuário Refugiado, com a função 'pt_cadastro_refugiado'
-@bp.route('/cadastrar/refugiado/', methods=('GET', 'POST'))
+@bp.route('/cadastrar/refugiado', methods=('GET', 'POST'))
 def pt_cadastro_refugiado():
     if request.method == 'POST':
         nome = request.form['nome']
@@ -87,7 +87,7 @@ def es_cadastro_refugiado():
     return render_template('es_es/cadastrar/cadastrar_refugiado_page_es.html')
 
 # Visualização em português sobre a página que contém o formulário de registro para o usuário Voluntário, com a função 'pt_cadastro_voluntario'
-@bp.route('/cadastrar/voluntario/', methods=('GET', 'POST'))
+@bp.route('/cadastrar/voluntario', methods=('GET', 'POST'))
 def pt_cadastro_voluntario():
     if request.method == 'POST':
         nome = request.form['nome']
@@ -164,31 +164,31 @@ def es_cadastro_voluntario():
 
     return render_template('es_es/cadastrar/cadastrar_voluntario_page_es.html')
 
-#Foi definido essa rota de login para refugiado.
-@bp.route('/login/', methods=('GET', 'POST'))
-def login():
+# Visualização em português sobre a página que contém o formulário de login para o usuário Refugiado, com a função 'pt_login_refugiado'
+@bp.route('/login/refugiado', methods=('GET', 'POST'))
+def pt_login_refugiado():
     if request.method == 'POST':
-        email = request.form['username']
-        senha = request.form['password']
+        email = request.form['email']
+        senha = request.form['senha']
         db = get_db()
         error = None
-        user = db.execute(
-            'SELECT * FROM refugiado WHERE email = ?', (email,)
+        refugiado = db.execute(
+            "SELECT * FROM refugiado WHERE email = ?", (email,)
         ).fetchone()
 
-        if user is None:
-            error = 'Usarname Incorreto.'
-        elif not check_password_hash(user['senha'], senha):
-            error = 'Senha Incorreto.'
+        if refugiado is None:
+            error = 'E-mail está incorreto!'
+        elif not check_password_hash(refugiado['senha'], senha):
+            error = 'Senha está incorreta!.'
 
         if error is None:
             session.clear()
-            session['user_id'] = user['id']
+            session['refugiado_id'] = refugiado['id']
             return redirect(url_for('index'))
 
         flash(error)
 
-    return render_template('login.html')
+    return render_template('login_refugiado_page.html')
 
 #Foi definido essa rota de login para voluntario.
 @bp.route('/login_voluntario/', methods=('GET', 'POST'))
