@@ -188,7 +188,7 @@ def pt_login_refugiado():
 
         flash(error)
 
-    return render_template('login_refugiado_page.html')
+    return render_template('pt_br/login/login_refugiado_page.html')
 
 #Foi definido essa rota de login para voluntario.
 @bp.route('/login_voluntario/', methods=('GET', 'POST'))
