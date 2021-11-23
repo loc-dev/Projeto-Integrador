@@ -1,8 +1,8 @@
 {% extends 'pt_br/model.html' %}
-{% block title %}Sobre nós{% endblock %}
+{% block title %}Login{% endblock %}
 {% block head %}
     {{ super() }}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/partials/page-sobre.css') }}"> <!-- Definindo a Formatação para o Sobre nós -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/partials/page-login.css') }}"> <!-- Definindo a Formatação para página Login -->
 {% endblock %}
 
 {% block body %}
@@ -20,9 +20,9 @@
     <nav id="menu_idioma">
         <ul class="nav-list">
             <li><a role="link" href="#">Inglês</a></li>
-            <li><a role="link" href="{{ url_for('content.es_sobre') }}">Espanhol</a></li>
+            <li><a role="link" href="#">Espanhol</a></li>
             <li><a role="link" href="#">Francês</a></li>
-            <li><a role="link" href="{{ url_for('content.pt_sobre') }}">Português</a></li>
+            <li><a role="link" href="{{ url_for('content.pt_login') }}">Português</a></li>
         </ul>
     </nav>
 
@@ -42,17 +42,29 @@
 <main>
 
     <hr class="line_menu">
-    <section id="conteudo" class="presentation">
-        <figure class="presentation_image">
-            <img src="{{ url_for('static', filename='img/images/together_1920px.png') }}" alt="">
-        </figure>
-        <h2>Sobre nós</h2>
-        <p>
-            O projeto Info Mãos Unidas tem o propósito de oferecer uma solução, onde o público alvo, nesse caso, o refugiado, precisa de informações, no entanto, de uma maneira diferente. E, com base no conhecimento do cenário atual, recomendamos ao próprio refugiado com disponibilidade a um meio tecnológico com conexão a internet que são bem-vindos em bibliotecas municipais, universidades, casas de apoio e outros locais, visite a aplicação Info Mãos Unidas, para ter um apoio fundamental, sem possuir a compreensão do idioma português brasileiro.
-        </p>
-        <p>
-            Os membros do projeto Info Mãos Unidas são os alunos Fabiana Ribeiro, Leonardo Oliveira e Octávio Antônio da Faculdade Invest de Ciências e Tecnologia, integrando os conhecimentos da grade matriz curricular do curso Ciência da Computação e Análise e Desenvolvimento de Sistemas.
-        </p>
+    <h1 id="conteudo">Login</h1>
+    <section class="refugee_volunteer_login">
+        <div class="refugee_login">
+            <div class="div-effect-text">
+                <a href="{{ url_for('auth.pt_cadastro_refugiado') }}">
+                    <h2>Refugiado</h2>
+                    <p>
+                        Acessar o seu perfil como Refugiado na Info Mãos Unidas
+                    </p>
+                </a>
+            </div>
+        </div>
+                        
+        <div class="volunteer_login">
+            <div class="div-effect-text">
+                <a href="{{ url_for('auth.pt_cadastro_voluntario') }}">
+                    <h2>Voluntário</h2>
+                    <p>
+                        Acessar o seu perfil como Voluntário na Info Mãos Unidas
+                    </p>
+                </a>
+            </div>
+        </div>
     </section>
 
 </main>
