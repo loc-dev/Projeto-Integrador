@@ -41,6 +41,10 @@ def create_app(test_config=None):
 
     # Importando o Blueprint 'auth' da pasta fora da raíz do pacote imu.
     from blueprints.auth import auth
-    app.register_blueprint(auth.bp)  
+    app.register_blueprint(auth.bp)
+
+    # Importando o Blueprint 'auth' da pasta fora da raiz do pacote imu.
+    from blueprints.dashboard import dashboard
+    app.register_blueprint(dashboard.bp)
 
     return app

@@ -1,6 +1,4 @@
-# 04 - Criando o Blueprint de Conteúdos (Home, Sobre nós, Workshops, Projetos)
-
-import functools
+# 04 - Criando o Blueprint de Conteúdos (Home, Sobre nós, Cadastrar e Login)
 
 from flask import (
     Blueprint, render_template

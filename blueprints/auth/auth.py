@@ -1,3 +1,7 @@
+# 05 - Criando o Blueprint de Autenticação (Cadastro de Refugiado e Voluntário, Login de Refugiado e Voluntário)
+
+import functools
+
 from flask import (
     flash, Blueprint, request, render_template, redirect, url_for, g, session
 )
@@ -184,7 +188,7 @@ def pt_login_refugiado():
         if error is None:
             session.clear()
             session['refugiado_id'] = refugiado['id']
-            return redirect(url_for('index'))
+            return redirect(url_for('dashboard.pt_index_refugiado'))
 
         flash(error)
 
@@ -210,39 +214,38 @@ def es_login_refugiado():
         if error is None:
             session.clear()
             session['refugiado_id'] = refugiado['id']
-            return redirect(url_for('index'))
+            return redirect(url_for('dashboard.es_index_refugiado'))
 
         flash(error)
 
     return render_template('es_es/login/login_refugiado_page_es.html')
 
-#Foi definido essa rota de login para voluntario.
-@bp.route('/login_voluntario/', methods=('GET', 'POST'))
-def login_voluntario():
-    if request.method == 'POST':
-        email = request.form['username']
-        senha = request.form['password']
-        db = get_db()
-        error = None
-        user = db.execute(
-            'SELECT * FROM voluntario WHERE email = ?', (email,)
+# Função para se executada antes de uma função de visualização ou até fora do Blueprint, irá funcionar para ambas versões de idioma, sendo somente o usuário Refugiado
+@bp.before_app_request
+def load_logged_in_refugiado():
+    refugiado_id = session.get('refugiado_id')
+
+    if refugiado_id is None:
+        g.refugiado = None
+    else:
+        g.refugiado = get_db().execute(
+            "SELECT * FROM refugiado WHERE id = ?", (refugiado_id,)
         ).fetchone()
 
-        if user is None:
-            error = 'Usarname Incorreto.'
-        elif not check_password_hash(user['senha'], senha):
-            error = 'Senha Incorreto.'
-
-        if error is None:
-            session.clear()
-            session['user_id'] = user['id']
-            return redirect(url_for('index'))
-
-        flash(error)
-
-    return render_template('login_voluntario.html')
-
+# Função para o refugiado que estiver na página Dashboard em português, encerrar a sua sessão, retornar para página de Login em português
 @bp.route('/logout')
-def logout():
+def pt_logout_refugiado():
     session.clear()
-    return redirect(url_for('index'))
+
+    return redirect(url_for('auth.pt_login_refugiado'))
+
+# Função para exigir autenticação em outras visualizações, nesse caso, para o usuário refugiado
+def pt_login_required_refugiado(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.refugiado is None:
+            return redirect(url_for('auth.pt_login_refugiado'))
+
+        return view(**kwargs)
+
+    return wrapped_view
