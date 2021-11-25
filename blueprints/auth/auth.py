@@ -249,3 +249,21 @@ def pt_login_required_refugiado(view):
         return view(**kwargs)
 
     return wrapped_view
+
+# Função para o refugiado que estiver na página Dashboard em espanhol, encerrar a sua sessão, retornar para página de Login em espanhol
+@bp.route('/encerrar')
+def es_logout_refugiado():
+    session.clear()
+
+    return redirect(url_for('auth.es_login_refugiado'))
+
+# Função para exigir autenticação em outras visualizações que estão no idioma espanhol, nesse caso, para o usuário refugiado
+def es_login_required_refugiado(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.refugiado is None:
+            return redirect(url_for('auth.es_login_refugiado'))
+
+        return view(**kwargs)
+
+    return wrapped_view
