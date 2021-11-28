@@ -1,8 +1,8 @@
 {% extends 'es_es/model.html' %}
-{% block title %}Iniciar sesión Refugiado{% endblock %}
+{% block title %}Iniciar sesión Voluntario{% endblock %}
 {% block head %}
     {{ super() }}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/partials/page-login-refugiado.css') }}"> <!-- Definindo a Formatação para página de Formulário de Login para Refugiado -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/partials/page-login-voluntario.css') }}"> <!-- Definindo a Formatação para página de Formulário de Login para Voluntário -->
 {% endblock %}
 
 {% block body %}
@@ -20,9 +20,9 @@
     <nav id="menu_idioma">
         <ul class="nav-list">
             <li><a role="link" href="#">Inglés</a></li>
-            <li><a role="link" href="{{ url_for('auth.es_login_refugiado') }}">Español</a></li>
+            <li><a role="link" href="{{ url_for('auth.es_login_voluntario') }}">Español</a></li>
             <li><a role="link" href="#">Francés</a></li>
-            <li><a role="link" href="{{ url_for('auth.pt_login_refugiado') }}">Portugués</a></li>
+            <li><a role="link" href="{{ url_for('auth.pt_login_voluntario') }}">Portugués</a></li>
         </ul>
     </nav>
 
@@ -42,10 +42,10 @@
 <main>
 
     <hr class="line_menu">
-    <h1 id="conteudo">Iniciar sesión Refugiado</h1>
-    <section class="refugee_form_login">
-        <div class="refugee_box_login">
-            <form method="post" class="refugee">
+    <h1 id="conteudo">Iniciar sesión Voluntario</h1>
+    <section class="volunteer_form_login">
+        <div class="volunteer_box_login">
+            <form method="post" class="volunteer">
                 <fieldset class="field_email">
                     <label for="email"></label>
                     <input type="email" name="email" id="email" placeholder="Correo electrónico ( * )" required>
@@ -75,7 +75,7 @@
 
     <div class="box_cadastrar">
         <p>
-            ¿No tienes una cuenta en Info Mãos Unidas? <a href="{{ url_for('auth.es_cadastro_refugiado') }}">Regístrate ahora</a>
+            ¿No tienes una cuenta en Info Mãos Unidas? <a href="{{ url_for('auth.es_cadastro_voluntario') }}">Regístrate ahora</a>
         </p>
     </div>
 
