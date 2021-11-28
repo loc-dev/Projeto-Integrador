@@ -96,7 +96,6 @@ def pt_cadastro_voluntario():
     if request.method == 'POST':
         nome = request.form['nome']
         sobrenome = request.form['sobrenome']
-        nacionalidade = request.form['nacionalidade']
         email = request.form['email']
         senha = request.form['senha']
         db = get_db()
@@ -116,8 +115,8 @@ def pt_cadastro_voluntario():
         if error is None:
             try:
                 db.execute(
-                    "INSERT INTO voluntario (nome, sobrenome, nacionalidade, email, senha) VALUES (?, ?, ?, ?, ?)",
-                    (nome, sobrenome, nacionalidade, email, generate_password_hash(senha)),
+                    "INSERT INTO voluntario (nome, sobrenome, email, senha) VALUES (?, ?, ?, ?)",
+                    (nome, sobrenome, email, generate_password_hash(senha)),
                 )
                 db.commit()
             except db.IntegrityError:
@@ -135,7 +134,6 @@ def es_cadastro_voluntario():
     if request.method == 'POST':
         nome = request.form['nome']
         sobrenome = request.form['sobrenome']
-        nacionalidade = request.form['nacionalidade']
         email = request.form['email']
         senha = request.form['senha']
         db = get_db()
@@ -155,8 +153,8 @@ def es_cadastro_voluntario():
         if error is None:
             try:
                 db.execute(
-                    "INSERT INTO voluntario (nome, sobrenome, nacionalidade, email, senha) VALUES (?, ?, ?, ?, ?)",
-                    (nome, sobrenome, nacionalidade, email, generate_password_hash(senha)),
+                    "INSERT INTO voluntario (nome, sobrenome, email, senha) VALUES (?, ?, ?, ?)",
+                    (nome, sobrenome, email, generate_password_hash(senha)),
                 )
                 db.commit()
             except db.IntegrityError:
