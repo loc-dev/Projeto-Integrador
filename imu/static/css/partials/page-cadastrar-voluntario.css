@@ -105,38 +105,6 @@ Formulário - Campo Sobrenome
 }
 
 /***
-Formulário - Campo de Seleção
-***/
-
-.field_nationality {
-    padding: 0;
-    border: none;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 16px;
-    text-align: center;
-}
-
-.field_nationality select {
-    /* background-color: coral; */
-    border: none;
-    border-bottom: 1px solid black;
-    border-radius: 4px;
-    width: 90%;
-    padding: 8px;
-    margin-top: 6px;
-}
-
-.field_nationality select:focus {
-    border-color: #FFA317;
-    box-shadow: 0 0 10px #FFA317;
-    border-radius: 4px;
-    outline: none;
-    margin-top: 6px;
-}
-
-/***
 Formulário - Campo E-mail
 ***/
 
