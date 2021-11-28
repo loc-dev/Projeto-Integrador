@@ -220,6 +220,32 @@ def es_login_refugiado():
 
     return render_template('es_es/login/login_refugiado_page_es.html')
 
+# Visualização em português sobre a página que contém o formulário de login para o usuário Voluntário, com a função 'pt_login_voluntario'
+@bp.route('/login/voluntario', methods=('GET', 'POST'))
+def pt_login_voluntario():
+    if request.method == 'POST':
+        email = request.form['email']
+        senha = request.form['senha']
+        db = get_db()
+        error = None
+        voluntario = db.execute(
+            "SELECT * FROM voluntario WHERE email = ?", (email,)
+        ).fetchone()
+
+        if voluntario is None:
+            error = 'E-mail está incorreto!'
+        elif not check_password_hash(voluntario['senha'], senha):
+            error = 'Senha está incorreta!'
+        
+        if error is None:
+            session.clear()
+            session['voluntario_id'] = voluntario['id']
+            return redirect(url_for('dashboard.pt_index_voluntario'))
+
+        flash(error)
+
+    return render_template('pt_br/login/login_voluntario_page.html')
+
 # Função para se executada antes de uma função de visualização ou até fora do Blueprint, irá funcionar para ambas versões de idioma, sendo somente o usuário Refugiado
 @bp.before_app_request
 def load_logged_in_refugiado():
