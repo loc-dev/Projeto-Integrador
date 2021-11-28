@@ -1,8 +1,8 @@
 {% extends 'pt_br/model.html' %}
-{% block title %}Login Refugiado{% endblock %}
+{% block title %}Login Voluntário{% endblock %}
 {% block head %}
     {{ super() }}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/partials/page-login-refugiado.css') }}"> <!-- Definindo a Formatação para página de Formulário de Login para Refugiado -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/partials/page-login-voluntario.css') }}"> <!-- Definindo a Formatação para página de Formulário de Login para Voluntário -->
 {% endblock %}
 
 {% block body %}
@@ -20,9 +20,9 @@
     <nav id="menu_idioma">
         <ul class="nav-list">
             <li><a role="link" href="#">Inglês</a></li>
-            <li><a role="link" href="{{ url_for('auth.es_login_refugiado') }}">Espanhol</a></li>
+            <li><a role="link" href="#">Espanhol</a></li>
             <li><a role="link" href="#">Francês</a></li>
-            <li><a role="link" href="{{ url_for('auth.pt_login_refugiado') }}">Português</a></li>
+            <li><a role="link" href="{{ url_for('auth.pt_login_voluntario') }}">Português</a></li>
         </ul>
     </nav>
 
@@ -40,12 +40,12 @@
 </header>
 
 <main>
-
+    
     <hr class="line_menu">
-    <h1 id="conteudo">Login Refugiado</h1>
-    <section class="refugee_form_login">
-        <div class="refugee_box_login">
-            <form method="post" class="refugee">
+    <h1 id="conteudo">Login Voluntário</h1>
+    <section class="volunteer_form_login">
+        <div class="volunteer_box_login">
+            <form method="post" class="volunteer">
                 <fieldset class="field_email">
                     <label for="email"></label>
                     <input type="email" name="email" id="email" placeholder="E-mail ( * )" required>
@@ -72,10 +72,10 @@
             </form>
         </div>
     </section>
-
+    
     <div class="box_cadastrar">
         <p>
-            Não tem uma conta na Info Mãos Unidas? <a href="{{ url_for('auth.pt_cadastro_refugiado') }}">Cadastre-se</a>
+            Não tem uma conta na Info Mãos Unidas? <a href="{{ url_for('auth.pt_cadastro_voluntario') }}">Cadastre-se</a>
         </p>
     </div>
 
