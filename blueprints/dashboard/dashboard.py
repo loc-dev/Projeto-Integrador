@@ -46,3 +46,61 @@ def pt_index_voluntario():
 def es_index_voluntario():
 
     return render_template('es_es/dashboard/es_db_voluntario_page.html')
+
+# A função 'unico_refugiado', possibilita selecionar somente o refugiado de um determinado id, 
+# para utilizar nas outras funções em que a visualização permitindo a alteração de dados e exclusão de conta
+def unico_refugiado(id):
+    refugee = get_db().execute(
+        "SELECT * FROM refugiado WHERE id = ?",
+        (id,)
+    ).fetchone()
+
+    print(refugee)
+    return refugee
+
+# Visualização em português sobre a página Dashboard Perfil para o usuário Refugiado, com a função 'pt_edit_refugiado' - Permitindo a alteração de dados
+@bp.route('/dashboard/refugiado/perfil/<int:id>', methods=('GET', 'POST'))
+@pt_login_required_refugiado
+def pt_edit_refugiado(id):
+    refugee = unico_refugiado(id)
+
+    if request.method == 'POST':
+        nome = request.form['nome']
+        sobrenome = request.form['sobrenome']
+        nacionalidade = request.form['nacionalidade']
+        email = request.form['email']
+        error = None
+
+        if  not nome and not email:
+            error = 'Por favor, os campos com ( * ) são obrigatórios!'
+        elif not nome:
+            error = 'Por favor, o Nome é obrigatório.'
+        elif not email:
+            error = 'Por favor, o E-mail é obrigatório.'
+        
+        
+        if error is not None:
+            flash(error)
+        else:
+            db = get_db()
+            db.execute(
+                "UPDATE refugiado SET nome = ?, sobrenome = ?, nacionalidade = ?, email = ?"
+                " WHERE id = ?",
+                (nome, sobrenome, nacionalidade, email, id)
+            )
+            db.commit()
+            return redirect(url_for('dashboard.pt_index_refugiado'))
+
+    return render_template('pt_br/dashboard/pt_perfil_refugiado_page.html', refugee=refugee)
+
+# Essa função 'pt_delete_refugiado' estará em funcionamento na página Dashboard Perfil para o usuário Refugiado - Permitindo a exclusão da conta
+@bp.route('/dashboard/refugiado/perfil/<int:id>/excluir', methods=('GET', 'POST'))
+@pt_login_required_refugiado
+def pt_delete_refugiado(id):
+    unico_refugiado(id)
+
+    db = get_db()
+    db.execute('DELETE FROM refugiado WHERE id = ?', (id,))
+    db.commit()
+
+    return redirect(url_for('auth.pt_login_refugiado'))
