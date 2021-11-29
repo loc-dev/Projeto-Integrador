@@ -11,7 +11,6 @@ CREATE TABLE refugiado (
     senha TEXT NOT NULL
 );
 
-
 CREATE TABLE voluntario (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome TEXT NOT NULL,

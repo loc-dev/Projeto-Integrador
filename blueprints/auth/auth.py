@@ -291,8 +291,7 @@ def load_logged_in_voluntario():
         g.voluntario = None
     else:
         g.voluntario = get_db().execute(
-            "SELECT * FROM voluntario WHERE id = ?",
-            (voluntario_id,)
+            "SELECT * FROM voluntario WHERE id = ?", (voluntario_id,)
         ).fetchone()
 
 # Função para o refugiado que estiver na página Dashboard em português, encerrar a sua sessão, retornar para página de Login em português
@@ -332,14 +331,14 @@ def pt_login_required_voluntario(view):
     return wrapped_view
 
 # Função para o refugiado que estiver na página Dashboard em espanhol, encerrar a sua sessão, retornar para página de Login em espanhol
-@bp.route('refugiado/encerrar')
+@bp.route('/refugiado/encerrar')
 def es_logout_refugiado():
     session.clear()
 
     return redirect(url_for('auth.es_login_refugiado'))
 
 # Função para o voluntario que estiver na página Dashboard em espanhol, encerrar a sua sessão, retornar para página de Login em espanhol
-@bp.route('voluntario/encerrar')
+@bp.route('/voluntario/encerrar')
 def es_logout_voluntario():
     session.clear()
 
