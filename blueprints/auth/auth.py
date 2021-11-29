@@ -270,7 +270,7 @@ def es_login_voluntario():
 
     return render_template('es_es/login/login_voluntario_page_es.html')
 
-# Função para se executada antes de uma função de visualização ou até fora do Blueprint, irá funcionar para ambas versões de idioma, sendo somente o usuário Refugiado
+# Função para ser executada antes de uma função de visualização ou até fora do Blueprint, irá funcionar para ambas versões de idioma, sendo somente o usuário Refugiado
 @bp.before_app_request
 def load_logged_in_refugiado():
     refugiado_id = session.get('refugiado_id')
@@ -282,12 +282,32 @@ def load_logged_in_refugiado():
             "SELECT * FROM refugiado WHERE id = ?", (refugiado_id,)
         ).fetchone()
 
+# Função para ser executada antes de uma função de visualização ou até fora do Blueprint, irá funcionar para ambas versões de idioma, sendo somente o usuário Voluntário
+@bp.before_app_request
+def load_logged_in_voluntario():
+    voluntario_id = session.get('voluntario_id')
+
+    if voluntario_id is None:
+        g.voluntario = None
+    else:
+        g.voluntario = get_db().execute(
+            "SELECT * FROM voluntario WHERE id = ?",
+            (voluntario_id,)
+        ).fetchone()
+
 # Função para o refugiado que estiver na página Dashboard em português, encerrar a sua sessão, retornar para página de Login em português
-@bp.route('/logout')
+@bp.route('/refugiado/logout')
 def pt_logout_refugiado():
     session.clear()
 
     return redirect(url_for('auth.pt_login_refugiado'))
+
+# Função para o voluntário que estiver na página Dashboard em português, encerrar a sua sessão, retornar para página de Login em português
+@bp.route('/voluntario/logout')
+def pt_logout_voluntario():
+    session.clear()
+
+    return redirect(url_for('auth.pt_login_voluntario'))
 
 # Função para exigir autenticação em outras visualizações, nesse caso, para o usuário refugiado
 def pt_login_required_refugiado(view):
@@ -300,12 +320,30 @@ def pt_login_required_refugiado(view):
 
     return wrapped_view
 
+# Função para exigir autenticação em outras visualizações, nesse caso, para o usuário voluntário
+def pt_login_required_voluntario(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.voluntario is None:
+            return redirect(url_for('auth.pt_login_voluntario'))
+
+        return view(**kwargs)
+
+    return wrapped_view
+
 # Função para o refugiado que estiver na página Dashboard em espanhol, encerrar a sua sessão, retornar para página de Login em espanhol
-@bp.route('/encerrar')
+@bp.route('refugiado/encerrar')
 def es_logout_refugiado():
     session.clear()
 
     return redirect(url_for('auth.es_login_refugiado'))
+
+# Função para o voluntario que estiver na página Dashboard em espanhol, encerrar a sua sessão, retornar para página de Login em espanhol
+@bp.route('voluntario/encerrar')
+def es_logout_voluntario():
+    session.clear()
+
+    return redirect(url_for('auth.es_login_voluntario'))
 
 # Função para exigir autenticação em outras visualizações que estão no idioma espanhol, nesse caso, para o usuário refugiado
 def es_login_required_refugiado(view):
@@ -316,4 +354,15 @@ def es_login_required_refugiado(view):
 
         return view(**kwargs)
 
+    return wrapped_view
+
+# Função para exigir autenticação em outras visualizações que estão no idioma espanhol, nesse caso, para o usuário voluntario
+def es_login_required_voluntario(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.voluntario is None:
+            return redirect(url_for('auth.es_login_voluntario'))
+
+        return view(**kwargs)
+    
     return wrapped_view
