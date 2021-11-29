@@ -1,4 +1,4 @@
-{% extends 'pt_br/model.html' %}
+{% extends 'es_es/model.html' %}
 {% block title %}Dashboard{% endblock %}
 {% block head %}
     {{ super() }}
@@ -10,33 +10,33 @@
 
     <nav id="menu_acessibilidade">
         <ul class="nav-list">
-            <li><a role="link" href="#menu_idioma">Pular para o menu de idioma</a></li>
-            <li><a role="link" href="#menu">Pular para o menu principal</a></li>
-            <li><a role="link" href="#conteudo">Pular para o conteúdo em destaque</a></li>
+            <li><a role="link" href="#menu_idioma">Saltar al menú de idiomas</a></li>
+            <li><a role="link" href="#menu">Saltar al menú</a></li>
+            <li><a role="link" href="#conteudo">Saltar al contenido destacado</a></li>
             <li><a role="option" href="#altocontraste" id="altocontraste" onclick="window.toggleContrast()" onkeydown="window.toggleContrast()"><i class="fas fa-adjust"></i></a></li>
         </ul>
     </nav>
 
     <nav id="menu_idioma">
         <ul class="nav-list">
-            <li><a role="link" href="#">Inglês</a></li>
-            <li><a role="link" href="{{ url_for('dashboard.es_index_voluntario') }}">Espanhol</a></li>
-            <li><a role="link" href="#">Francês</a></li>
-            <li><a role="link" href="{{ url_for('dashboard.pt_index_voluntario') }}">Português</a></li>
+            <li><a role="link" href="#">Inglés</a></li>
+            <li><a role="link" href="{{ url_for('dashboard.es_index_voluntario') }}">Español</a></li>
+            <li><a role="link" href="#">Francés</a></li>
+            <li><a role="link" href="{{ url_for('dashboard.pt_index_voluntario') }}">Portugués</a></li>
         </ul>
     </nav>
 
-    <a role="link" class="logo" href="{{ url_for('content.pt_home') }}"><img alt="Logo da página Info Mãos Unidas" src="{{ url_for('static', filename='img/logo/logo.png') }}"></a>
+    <a role="link" class="logo" href="{{ url_for('content.es_home') }}"><img alt="Logo da página Info Mãos Unidas" src="{{ url_for('static', filename='img/logo/logo.png') }}"></a>
 
     <nav id="menu">
         <ul class="nav-list">
             {% if g.voluntario %}
-            <li><a role="link" href="#">Workshops</a></li>
+            <li><a role="link" href="#">Talleres</a></li>
             <li><a role="link" href="#">{{ g.voluntario['nome'] }}</a></li>
-            <li><a role="link" href="{{ url_for('auth.pt_logout_voluntario') }}">Sair</a></li>
+            <li><a role="link" href="{{ url_for('auth.es_logout_voluntario') }}">Salir</a></li>
             {% else %}
-            <li><a role="link" href="{{ url_for('content.pt_cadastrar') }}">Cadastrar</a></li>
-            <li><a role="link" href="{{ url_for('content.pt_login') }}">Login</a></li>
+            <li><a role="link" href="{{ url_for('content.es_cadastrar') }}">Crear una cuenta</a></li>
+            <li><a role="link" href="{{ url_for('content.es_login') }}">Iniciar sesión</a></li>
             {% endif %}
         </ul>
     </nav>
@@ -55,12 +55,12 @@
                 {% if g.voluntario %}
 
                 <fieldset class="field_name">
-                    <label for="nome">Nome ( * )</label>
+                    <label for="nome">Nombre ( * )</label>
                     <input type="text" name="nome" id="nome" placeholder="" value="{{ g.voluntario['nome'] }}" readonly>
                 </fieldset>
 
                 <fieldset class="field_surname">
-                    <label for="sobrenome">Sobrenome</label>
+                    <label for="sobrenome">Apellido</label>
                     <input type="text" name="sobrenome" id="sobrenome" placeholder="" value="{{ g.voluntario['sobrenome'] }}" readonly>
                 </fieldset>
 
@@ -75,7 +75,7 @@
     <div class="logo_footer clear">
         <img src="{{ url_for('static', filename='img/logo/logo.png') }}">
     </div>
-    <p>Copyright &copy; 2021 - Todos os direitos reservados pela Info Mãos Unidas</p>
+    <p>&copy; Copyright 2021 por Info Mãos Unidas</p>
 </footer>
 
 <script src="js/contrast.class.js"></script>
