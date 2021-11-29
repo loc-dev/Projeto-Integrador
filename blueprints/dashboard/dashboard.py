@@ -26,7 +26,7 @@ def pt_index_refugiado():
 
     return render_template('pt_br/dashboard/pt_db_refugiado_page.html')
 
-# Visualização em espanhol sobre a página Dasdhboard para o usuário Refugiado, com a função 'es_index_refugiado'
+# Visualização em espanhol sobre a página Dashboard para o usuário Refugiado, com a função 'es_index_refugiado'
 @bp.route('/dashboard/refugiado/es')
 @es_login_required_refugiado
 def es_index_refugiado():
@@ -39,3 +39,10 @@ def es_index_refugiado():
 def pt_index_voluntario():
 
     return render_template('pt_br/dashboard/pt_db_voluntario_page.html')
+
+# Visualização em espanhol sobre a página Dashboard para o usuário Voluntário, com a função 'es_index_voluntario'
+@bp.route('/dashboard/voluntario/es')
+@es_login_required_voluntario
+def es_index_voluntario():
+
+    return render_template('es_es/dashboard/es_db_voluntario_page.html')
