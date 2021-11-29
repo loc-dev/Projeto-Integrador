@@ -32,7 +32,7 @@
         <ul class="nav-list">
             {% if g.refugiado %}
             <li><a role="link" href="#">Workshops</a></li>
-            <li><a role="link" href="#">{{ g.refugiado['nome'] }}</a></li>
+            <li><a role="link" href="{{ url_for('dashboard.pt_edit_refugiado', id=g.refugiado['id']) }}">{{ g.refugiado['nome'] }}</a></li>
             <li><a role="link" href="{{ url_for('auth.pt_logout_refugiado') }}">Sair</a></li>
             {% else %}
             <li><a role="link" href="{{ url_for('content.pt_cadastrar') }}">Cadastrar</a></li>

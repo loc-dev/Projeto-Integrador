@@ -1,0 +1,125 @@
+{% extends 'pt_br/model.html' %}
+{% block title %}Perfil{% endblock %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/partials/page-perfil-refugiado.css') }}"> <!-- Definindo a Formatação para página de Perfil do Refugiado -->
+{% endblock %}
+
+{% block body %}
+<header>
+
+    <nav id="menu_acessibilidade">
+        <ul class="nav-list">
+            <li><a role="link" href="#menu_idioma">Pular para o menu de idioma</a></li>
+            <li><a role="link" href="#menu">Pular para o menu principal</a></li>
+            <li><a role="link" href="#conteudo">Pular para o conteúdo em destaque</a></li>
+            <li><a role="option" href="#altocontraste" id="altocontraste" onclick="window.toggleContrast()" onkeydown="window.toggleContrast()"><i class="fas fa-adjust"></i></a></li>
+        </ul>
+    </nav>
+
+    <nav id="menu_idioma">
+        <ul class="nav-list">
+            <li><a role="link" href="#">Inglês</a></li>
+            <li><a role="link" href="#">Espanhol</a></li>
+            <li><a role="link" href="#">Francês</a></li>
+            <li><a role="link" href="{{ url_for('dashboard.pt_edit_refugiado', id=g.refugiado['id']) }}">Português</a></li>
+        </ul>
+    </nav>
+
+    <a role="link" class="logo" href="{{ url_for('content.pt_home') }}"><img alt="Logo da página Info Mãos Unidas" src="{{ url_for('static', filename='img/logo/logo.png') }}"></a>
+
+    <nav id="menu">
+        <ul class="nav-list">
+            {% if g.refugiado %}
+            <li><a role="link" href="#">Workshops</a></li>
+            <li><a role="link" href="{{ url_for('dashboard.pt_edit_refugiado', id=g.refugiado['id']) }}">{{ g.refugiado['nome'] }}</a></li>
+            <li><a role="link" href="{{ url_for('auth.pt_logout_refugiado') }}">Sair</a></li>
+            {% else %}
+            <li><a role="link" href="{{ url_for('content.pt_cadastrar') }}">Cadastrar</a></li>
+            <li><a role="link" href="{{ url_for('content.pt_login') }}">Login</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+</header>
+
+<main>
+
+    <hr class="line_menu">
+    <h1 id="conteudo">Perfil</h1>
+    <section class="refugee_mini_profile">
+        <div class="refugee_box_profile">
+            <h2>Perfil Completo</h2>
+            <br>
+            <form method="post" class="refugee">
+
+                <fieldset class="field_name">
+                    <label for="nome">Nome ( * )</label>
+                    <input type="text" name="nome" id="nome" placeholder="" value="{{ request.form['nome'] or g.refugiado['nome'] }}">
+                </fieldset>
+
+                <fieldset class="field_surname">
+                    <label for="sobrenome">Sobrenome</label>
+                    <input type="text" name="sobrenome" id="sobrenome" placeholder="" value="{{ request.form['sobrenome'] or g.refugiado['sobrenome'] }}">
+                </fieldset>
+
+                <fieldset class="field_nationality">
+                    <label for="nacionalidade">Nacionalidade  ( * )</label>
+                    <select id="nacionalidade" name="nacionalidade">
+                        <option value="Angola">Angola</option>
+                        <option value="Bangladesh">Bangladesh</option>
+                        <option value="China">China</option>
+                        <option value="Cuba">Cuba</option>
+                        <option value="Gana">Gana</option>
+                        <option value="Guiné-Bissau">Guiné-Bissau</option>
+                        <option value="Haiti">Haiti</option>
+                        <option value="Líbano">Líbano</option>
+                        <option value="Marrocos">Marrocos</option>
+                        <option value="Nigéria">Nigéria</option>
+                        <option value="Palestina">Palestina</option>
+                        <option value="Paquistão">Paquistão</option>
+                        <option value="República Democrática do Congo">República Democrática do Congo</option>
+                        <option value="Senegal">Senegal</option>
+                        <option value="Síria">Síria</option>
+                        <option value="Venezuela"  selected>Venezuela</option>
+                    </select>
+                </fieldset>
+
+                <fieldset class="field_email">
+                    <label for="email">E-mail ( * )</label>
+                    <input type="email" name="email" id="email" placeholder="" value="{{ request.form['email'] or g.refugiado['email'] }}" required>
+                </fieldset>
+                {% for message in get_flashed_messages() %}
+                    <div class="flash">{{ message }}</div>
+                {% endfor %}
+
+                <button type="submit" class="button_form">Salvar</button>
+                
+            </form>
+        </div>
+    </section>
+
+    <section class="refugee_account">
+        <div class="refugee_box_account_delete">
+            <h2>Exclusão de Conta</h2>
+            <br>
+            <form action="{{ url_for('dashboard.pt_delete_refugiado', id=g.refugiado['id']) }}" method="post">
+                <button type="submit" class="button_form_delete" onclick="return confirm('Você tem certeza que deseja excluir sua conta?');">
+                    Excluir Conta
+                </button>
+            </form>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="logo_footer clear">
+        <img src="{{ url_for('static', filename='img/logo/logo.png') }}">
+    </div>
+    <p>Copyright &copy; 2021 - Todos os direitos reservados pela Info Mãos Unidas</p>
+</footer>
+
+<script src="js/contrast.class.js"></script>
+
+{% endblock %}
