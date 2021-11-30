@@ -55,7 +55,6 @@ def unico_refugiado(id):
         (id,)
     ).fetchone()
 
-    print(refugee)
     return refugee
 
 # Visualização em português sobre a página Dashboard Perfil para o usuário Refugiado, com a função 'pt_edit_refugiado' - Permitindo a alteração de dados
@@ -130,7 +129,7 @@ def es_edit_refugiado(id):
         else:
             db = get_db()
             db.execute(
-                "UPDATE refugiado SET nome = ?, sobrenome = ?. nacionalidade = ?, email = ?"
+                "UPDATE refugiado SET nome = ?, sobrenome = ?, nacionalidade = ?, email = ?"
                 " WHERE id = ?",
                 (nome, sobrenome, nacionalidade, email, id)
             )
@@ -150,3 +149,59 @@ def es_delete_refugiado(id):
     db.commit()
 
     return redirect(url_for('auth.es_login_refugiado'))
+
+# A função 'unico_voluntario', possibilita selecionar somente o refugiado de um determinado id,
+# para utilizar nas outras funções em que a visualização permitindo a alteração de dados e exclusão de conta
+def unico_voluntario(id):
+    volunteer = get_db().execute(
+        "SELECT * FROM voluntario WHERE id = ?",
+        (id,)
+    ).fetchone()
+
+    return volunteer
+
+# Visualização em português sobre a página Dashboard Perfil para o usuário Voluntário, com a função 'pt_edit_voluntario' - Permitindo a alteração de dados
+@bp.route('/dashboard/voluntario/perfil/<int:id>', methods=('GET', 'POST'))
+@pt_login_required_voluntario
+def pt_edit_voluntario(id):
+    volunteer = unico_voluntario(id)
+
+    if request.method == 'POST':
+        nome = request.form['nome']
+        sobrenome = request.form['sobrenome']
+        email = request.form['email']
+        error = None
+
+        if  not nome and not email:
+            error = 'Por favor, os campos com ( * ) são obrigatórios!'
+        elif not nome:
+            error = 'Por favor, o Nome é obrigatório.'
+        elif not email:
+            error = 'Por favor, o E-mail é obrigatório.'
+        
+        
+        if error is not None:
+            flash(error)
+        else:
+            db = get_db()
+            db.execute(
+                "UPDATE voluntario SET nome = ?, sobrenome = ?, email = ?"
+                " WHERE id = ?",
+                (nome, sobrenome, email, id)
+            )
+            db.commit()
+            return redirect(url_for('dashboard.pt_index_voluntario'))
+
+    return render_template('pt_br/dashboard/pt_perfil_voluntario_page.html', volunteer=volunteer)
+
+# Essa função 'pt_delete_voluntario' estará em funcionamento na página Dashboard Perfil para o usuário Voluntário - Permitindo a exclusão da conta
+@bp.route('/dashboard/voluntario/perfil/<int:id>/excluir', methods=('GET', 'POST'))
+@pt_login_required_voluntario
+def pt_delete_voluntario(id):
+    unico_voluntario(id)
+
+    db = get_db()
+    db.execute('DELETE FROM voluntario WHERE id = ?', (id,))
+    db.commit()
+
+    return redirect(url_for('auth.pt_login_voluntario'))
