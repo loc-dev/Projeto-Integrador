@@ -20,7 +20,7 @@
     <nav id="menu_idioma">
         <ul class="nav-list">
             <li><a role="link" href="#">Inglês</a></li>
-            <li><a role="link" href="#">Espanhol</a></li>
+            <li><a role="link" href="{{ url_for('dashboard.es_edit_voluntario', id=g.voluntario['id']) }}">Espanhol</a></li>
             <li><a role="link" href="#">Francês</a></li>
             <li><a role="link" href="{{ url_for('dashboard.pt_edit_voluntario', id=g.voluntario['id']) }}">Português</a></li>
         </ul>

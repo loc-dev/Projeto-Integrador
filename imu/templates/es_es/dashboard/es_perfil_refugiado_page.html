@@ -1,5 +1,5 @@
 {% extends 'es_es/model.html' %}
-{% block title %}Perfil{% endblock %}
+{% block title %}Perfil Refugiado{% endblock %}
 {% block head %}
     {{ super() }}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/partials/page-perfil-refugiado.css') }}"> <!-- Definindo a Formatação para página de Perfil do Refugiado -->
@@ -31,12 +31,12 @@
     <nav id="menu">
         <ul class="nav-list">
             {% if g.refugiado %}
-            <li><a role="link" href="#">Workshops</a></li>
+            <li><a role="link" href="#">Talleres</a></li>
             <li><a role="link" href="{{ url_for('dashboard.es_edit_refugiado', id=g.refugiado['id']) }}">{{ g.refugiado['nome'] }}</a></li>
             <li><a role="link" href="{{ url_for('auth.es_logout_refugiado') }}">Salir</a></li>
             {% else %}
-            <li><a role="link" href="{{ url_for('content.es_cadastrar') }}">Cadastrar</a></li>
-            <li><a role="link" href="{{ url_for('content.es_login') }}">Login</a></li>
+            <li><a role="link" href="{{ url_for('content.es_cadastrar') }}">Crear una cuenta</a></li>
+            <li><a role="link" href="{{ url_for('content.es_login') }}">Iniciar sesión</a></li>
             {% endif %}
         </ul>
     </nav>
