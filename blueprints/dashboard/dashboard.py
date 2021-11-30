@@ -205,3 +205,48 @@ def pt_delete_voluntario(id):
     db.commit()
 
     return redirect(url_for('auth.pt_login_voluntario'))
+
+# Visualização em espanhol sobre a página Dashboard Perfil para o usuário Voluntário, com a função 'es_edit_voluntario' - Permitindo a alteração de dados
+@bp.route('/dashboard/voluntario/perfil/<int:id>/es', methods=('GET', 'POST'))
+@es_login_required_voluntario
+def es_edit_voluntario(id):
+    volunteer = unico_voluntario(id)
+
+    if request.method == 'POST':
+        nome = request.form['nome']
+        sobrenome = request.form['sobrenome']
+        email = request.form['email']
+        error = None
+
+        if not nome and not email:
+            error = '¡Por favor, los campos con (*) son obligatorios!'
+        elif not nome:
+            error = '¡Por favor, se requiere nombre!'
+        elif not email:
+            error = '¡Por favor, se require correo electrónico!'
+
+        if error is not None:
+            flash(error)
+        else:
+            db = get_db()
+            db.execute(
+                "UPDATE voluntario SET nome = ?, sobrenome = ?, email = ?"
+                " WHERE id = ?",
+                (nome, sobrenome, email, id)
+            )
+            db.commit()
+            return redirect(url_for('dashboard.es_index_voluntario'))
+
+    return render_template('es_es/dashboard/es_perfil_voluntario_page.html', volunteer=volunteer)
+
+# Essa função 'es_delete_voluntario' estará em funcionamento na página Dashboard Perfil para o usuário Voluntário - Permitindo a exclusão da conta
+@bp.route('/dashboard/voluntario/perfil/<int:id>/eliminar/es', methods=('GET', 'POST'))
+@es_login_required_voluntario
+def es_delete_voluntario(id):
+    unico_voluntario(id)
+
+    db = get_db()
+    db.execute('DELETE FROM voluntario WHERE id = ?', (id,))
+    db.commit()
+
+    return redirect(url_for('auth.es_login_voluntario'))
