@@ -104,3 +104,49 @@ def pt_delete_refugiado(id):
     db.commit()
 
     return redirect(url_for('auth.pt_login_refugiado'))
+
+# Visualização em espanhol sobre a página Dashboard Perfil para o usuário Refugiado, com a função 'es_edit_refugiado' - Permitindo a alteração de dados
+@bp.route('/dashboard/refugiado/perfil/<int:id>/es', methods=('GET', 'POST'))
+@es_login_required_refugiado
+def es_edit_refugiado(id):
+    refugee = unico_refugiado(id)
+
+    if request.method == 'POST':
+        nome = request.form['nome']
+        sobrenome = request.form['sobrenome']
+        nacionalidade = request.form['nacionalidade']
+        email = request.form['email']
+        error = None
+
+        if not nome and not email:
+            error = '¡Por favor, los campos con (*) son obligatorios!'
+        elif not nome:
+            error = '¡Por favor, se requiere nombre!'
+        elif not email:
+            error = '¡Por favor, se require correo electrónico!'
+
+        if error is not None:
+            flash(error)
+        else:
+            db = get_db()
+            db.execute(
+                "UPDATE refugiado SET nome = ?, sobrenome = ?. nacionalidade = ?, email = ?"
+                " WHERE id = ?",
+                (nome, sobrenome, nacionalidade, email, id)
+            )
+            db.commit()
+            return redirect(url_for('dashboard.es_index_refugiado'))
+
+    return render_template('es_es/dashboard/es_perfil_refugiado_page.html', refugee=refugee)
+
+# Essa função 'es_delete_refugiado' estará em funcionamento na página Dashboard Perfil para o usuário Refugiado - Permitindo a exclusão da conta
+@bp.route('/dashboard/refugiado/perfil/<int:id>/eliminar/es', methods=('GET', 'POST'))
+@es_login_required_refugiado
+def es_delete_refugiado(id):
+    unico_refugiado(id)
+
+    db = get_db()
+    db.execute('DELETE FROM refugiado WHERE id = ?', (id,))
+    db.commit()
+
+    return redirect(url_for('auth.es_login_refugiado'))
