@@ -1,8 +1,8 @@
 {% extends 'pt_br/model.html' %}
-{% block title %}Dashboard{% endblock %}
+{% block title %}Perfil Voluntário{% endblock %}
 {% block head %}
     {{ super() }}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/partials/page-dashboard-voluntario.css') }}"> <!-- Definindo a Formatação para página de Dashboard para Voluntário -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/partials/page-perfil-voluntario.css') }}"> <!-- Definindo a Formatação para página de Perfil de Voluntário -->
 {% endblock %}
 
 {% block body %}
@@ -20,9 +20,9 @@
     <nav id="menu_idioma">
         <ul class="nav-list">
             <li><a role="link" href="#">Inglês</a></li>
-            <li><a role="link" href="{{ url_for('dashboard.es_index_voluntario') }}">Espanhol</a></li>
+            <li><a role="link" href="#">Espanhol</a></li>
             <li><a role="link" href="#">Francês</a></li>
-            <li><a role="link" href="{{ url_for('dashboard.pt_index_voluntario') }}">Português</a></li>
+            <li><a role="link" href="{{ url_for('dashboard.pt_edit_voluntario', id=g.voluntario['id']) }}">Português</a></li>
         </ul>
     </nav>
 
@@ -46,25 +46,45 @@
 <main>
 
     <hr class="line_menu">
-    <h1 id="conteudo">Dashboard</h1>
+    <h1 id="conteudo">Perfil</h1>
     <section class="volunteer_mini_profile">
         <div class="volunteer_box_profile">
-            <h2>Perfil Resumido</h2>
+            <h2>Perfil Completo</h2>
             <br>
-            <form method="get" class="volunteer">
-                {% if g.voluntario %}
+            <form method="post" class="volunteer">
 
                 <fieldset class="field_name">
                     <label for="nome">Nome ( * )</label>
-                    <input type="text" name="nome" id="nome" placeholder="" value="{{ g.voluntario['nome'] }}" readonly>
+                    <input type="text" name="nome" id="nome" placeholder="" value="{{ request.form['nome'] or g.voluntario['nome'] }}" required>
                 </fieldset>
 
                 <fieldset class="field_surname">
                     <label for="sobrenome">Sobrenome</label>
-                    <input type="text" name="sobrenome" id="sobrenome" placeholder="" value="{{ g.voluntario['sobrenome'] }}" readonly>
+                    <input type="text" name="sobrenome" id="sobrenome" placeholder="" value="{{ request.form['sobrenome'] or g.voluntario['sobrenome'] }}">
                 </fieldset>
 
-                {% endif %}
+                <fieldset class="field_email">
+                    <label for="email">E-mail ( * )</label>
+                    <input type="email" name="email" id="email" placeholder="" value="{{ request.form['email'] or g.voluntario['email'] }}" required>
+                </fieldset>
+                {% for message in get_flashed_messages() %}
+                    <div class="flash">{{ message }}</div>
+                {% endfor %}
+
+                <button type="submit" class="button_form">Salvar</button>
+                
+            </form>
+        </div>
+    </section>
+
+    <section class="volunteer_account">
+        <div class="volunteer_box_account_delete">
+            <h2>Exclusão de Conta</h2>
+            <br>
+            <form action="{{ url_for('dashboard.pt_delete_voluntario', id=g.voluntario['id']) }}" method="post">
+                <button type="submit" class="button_form_delete" onclick="return confirm('Você tem certeza que deseja excluir sua conta?');">
+                    Excluir Conta
+                </button>
             </form>
         </div>
     </section>

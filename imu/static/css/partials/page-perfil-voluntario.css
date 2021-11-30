@@ -4,7 +4,7 @@ body {
 
 main {
     /* background-color: lightsalmon; */
-    height: auto;
+    height: 70vh;
     width: 90%;
     margin: 0 auto;
 }
@@ -21,29 +21,34 @@ main h1 {
     color: #AE6721;
 }
 
-.volunteer_form_register {
+.volunteer_mini_profile {
     /* background-color:cornflowerblue; */
-    height: auto;
+    height: 12vw;
     display: flex;
     justify-content: center;
 }
 
-.volunteer_box_register {
+.volunteer_box_profile {
     background-color: #fff;
     border: 4px solid #AE7236;
     border-radius: 18px;
-    height: 59vh;
-    width: 26vw;
+    height: 12vw;
+    width: 85vw;
     margin: auto auto;
     margin-left: auto;
     margin-right: auto;
     padding: 14px;
 }
 
+.volunteer_box_profile h2 {
+    color: #AE6721;
+}
+
 .volunteer {
-    text-align: center;
+    display: flex;
+    /* text-align: center;
     margin-left: auto;
-    margin-right: auto;
+    margin-right: auto; */
 }
 
 /***
@@ -57,6 +62,7 @@ Formulário - Campo Nome
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 16px;
+    text-align: center;
 }
 
 .field_name input {
@@ -66,6 +72,7 @@ Formulário - Campo Nome
     border-radius: 4px;
     width: 90%;
     padding: 8px;
+    margin-top: 10px;
 }
 
 .field_name input:focus {
@@ -86,6 +93,7 @@ Formulário - Campo Sobrenome
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 16px;
+    text-align: center;
 }
 
 .field_surname input {
@@ -95,6 +103,7 @@ Formulário - Campo Sobrenome
     border-radius: 4px;
     width: 90%;
     padding: 8px;
+    margin-top: 10px;
 }
 
 .field_surname input:focus {
@@ -102,6 +111,39 @@ Formulário - Campo Sobrenome
     box-shadow: 0 0 10px #FFA317;
     border-radius: 4px;
     outline: none;
+}
+
+/***
+Formulário - Campo de Seleção
+***/
+
+.field_nationality {
+    padding: 0;
+    border: none;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.field_nationality select {
+    /* background-color: coral; */
+    border: none;
+    border-bottom: 1px solid black;
+    border-radius: 4px;
+    width: 90%;
+    padding: 7px;
+    margin-top: 10px;
+    /* margin-top: 6px; */
+}
+
+.field_nationality select:focus {
+    border-color: #FFA317;
+    box-shadow: 0 0 10px #FFA317;
+    border-radius: 4px;
+    outline: none;
+    /* margin-top: 2px; */
 }
 
 /***
@@ -115,6 +157,7 @@ Formulário - Campo E-mail
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 16px;
+    text-align: center;
 }
 
 .field_email input {
@@ -124,6 +167,7 @@ Formulário - Campo E-mail
     border-radius: 4px;
     width: 90%;
     padding: 8px;
+    margin-top: 10px;
 }
 
 .field_email input:focus {
@@ -133,65 +177,12 @@ Formulário - Campo E-mail
     outline: none;
 }
 
-/***
-Formulário - Campo Senha
-***/
-
-.field_password {
-    padding: 0;
-    border: none;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 16px;
-}
-
-.field_password input {
-    /* background-color: coral; */
-    border: none;
-    border-bottom: 1px solid black;
-    border-radius: 4px;
-    width: 90%;
-    padding: 8px;
-}
-
-.field_password input:focus {
-    border-color: #FFA317;
-    box-shadow: 0 0 10px #FFA317;
-    border-radius: 4px;
-    outline: none;
-}
-
-.flash {
-    margin: 1em 0;
-    padding: 1em;
-    background: #fff;
-    border: 1px solid red;
-    color: red;
-    font-weight: bold;
-}
-
-.volunteer p {
-    font-size: 14px;
-}
-
-.volunteer .termos_politica a {
-    color: #AE6721;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-.volunteer .termos_politica a:hover {
-    border-bottom: 2px solid #AE6721;
-    transition: .1s;
-}
-
 .button_form {
     background-color: #ffffffaa;
     border: none;
     border: 1px solid black;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom: 15px;
     padding: 12px;
     padding-left: 12px;
     width: 12vw;
@@ -213,104 +204,65 @@ Formulário - Campo Senha
     outline: none;
 }
 
-/***
-Pop-up para Termos de Uso
-***/
-
-.termo_de_uso {
-    background-color: #FFF;
-    border: 4px solid #AE7236;
+.volunteer_account {
+    /* background-color: lightpink; */
+    margin-top: 14px;
     height: auto;
-    padding: 10px;
-    width: 70vw;
-    position: absolute;
-    top: 15%;
-    left: 30%;
-    margin: -75px 0 0 -200px;
-    z-index: 1;
-    text-align: justify;
-}
-  
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    width: 100%;
-    height: 100%;
-}
-  
-.termo_de_uso, .overlay {
-    display: none;
-}
-  
-.termo_de_uso .close {
-    background-color: #FF1A2D;
-    color: #FFF;
-    padding: 5px;
-    position: absolute;
-    right: -25px;
-    top: -12px;
+    display: flex;
+    justify-content: center;
 }
 
-/***
-Pop-up para Política de Privacidade
-***/
-
-.politica_privacidade{
-    background-color: #FFF;
+.volunteer_box_account_delete {
+    background-color: #fff;
     border: 4px solid #AE7236;
+    border-radius: 18px;
     height: auto;
-    padding: 10px;
-    width: 70vw;
-    position: absolute;
-    top: 15%;
-    left: 30%;
-    margin: -75px 0 0 -200px;
-    z-index: 1;
-    text-align: justify;
-}
-  
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    width: 100%;
-    height: 100%;
-}
-  
-.politica_privacidade, .overlay {
-    display: none;
-}
-  
-.politica_privacidade .close {
-    background-color: #FF1A2D;
-    color: #FFF;
-    padding: 5px;
-    position: absolute;
-    right: -25px;
-    top: -12px;
-}
-
-.box_login {
-    /* background-color: lightgreen; */
-    height: 10vh;
-    width: auto;
+    width: 26vw;
+    margin: auto auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 14px;
     text-align: center;
-    padding: 30px;
+}
+
+.volunteer_box_account_delete h2 {
     color: #AE6721;
 }
 
-.box_login a {
+.button_form_delete {
+    background-color: #ffffffaa;
+    border: none;
+    border: 1px solid black;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    padding: 12px;
+    padding-left: 12px;
+    width: 12vw;
+    border-radius: 18px;
     color: #AE6721;
     font-weight: bold;
-    text-decoration: none;
 }
 
-.box_login a:hover {
-    border-bottom: 2px solid #AE6721;
-    transition: .1s;
+.button_form_delete:hover {
+    background-color: #AE6721;
+    color: #ffff;
+    font-weight: bold;
+}
+
+.button_form_delete:focus {
+    border-color: #FFA317;
+    box-shadow: 0 0 18px #FFA317;
+    border-radius: 18px;
+    outline: none;
+}
+
+.flash {
+    margin: 0 auto;
+    padding: 1em;
+    background: #fff;
+    border: 1px solid red;
+    color: red;
+    font-weight: bold;
 }
 
 footer {
