@@ -1,8 +1,8 @@
 {% extends 'es_es/model.html' %}
-{% block title %}Dashboard{% endblock %}
+{% block title %}Talleres{% endblock %}
 {% block head %}
     {{ super() }}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/partials/page-dashboard-refugiado.css') }}"> <!-- Definindo a Formatação para página de Dashboard para Refugiado -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/partials/page-workshop-refugiado.css') }}"> <!-- Definindo a Formatação para página de Workshop para Voluntário -->
 {% endblock %}
 
 {% block body %}
@@ -20,9 +20,9 @@
     <nav id="menu_idioma">
         <ul class="nav-list">
             <li><a role="link" href="#">Inglés</a></li>
-            <li><a role="link" href="{{ url_for('dashboard.es_index_refugiado') }}">Español</a></li>
+            <li><a role="link" href="{{ url_for('dashboard.es_workshop_refugiado') }}">Español</a></li>
             <li><a role="link" href="#">Francés</a></li>
-            <li><a role="link" href="{{ url_for('dashboard.pt_index_refugiado') }}">Portugués</a></li>
+            <li><a role="link" href="{{ url_for('dashboard.pt_workshop_refugiado') }}">Portugués</a></li>
         </ul>
     </nav>
 
@@ -46,33 +46,27 @@
 <main>
 
     <hr class="line_menu">
-    <h1 id="conteudo">Dashboard</h1>
-    <section class="refugee_mini_profile">
-        <div class="refugee_box_profile">
-            <h2>Perfil Resumido</h2>
-            <br>
-            <form method="get" class="refugee">
-                {% if g.refugiado %}
-
-                <fieldset class="field_name">
-                    <label for="nome">Nombre ( * )</label>
-                    <input type="text" name="nome" id="nome" placeholder="" value="{{ g.refugiado['nome'] }}" readonly>
-                </fieldset>
-
-                <fieldset class="field_surname">
-                    <label for="sobrenome">Apellido</label>
-                    <input type="text" name="sobrenome" id="sobrenome" placeholder="" value="{{ g.refugiado['sobrenome'] }}" readonly>
-                </fieldset>
-
-                <fieldset class="field_nationality">
-                    <label for="nacionalidade">Nacionalidad  ( * )</label>
-                    <select id="nacionalidade" name="nacionalidade" disabled>
-                        <option value="{{ g.refugiado['nacionalidade'] }}" selected>{{ g.refugiado['nacionalidade'] }}</option>	
-                    </select>
-                </fieldset>
-
+    <h1 id="conteudo">Talleres</h1>
+    <section class="volunteer_full_workshops">
+        <div class='volunteer_box_workshop'>
+            <div class='box_publicacoes'>
+            {% for publicacao in publicacoes %}
+                <article class="publicacao">
+                    <header>
+                        <div>
+                            <h1>{{ publicacao['title'] }}</h1>
+                            <div class="sobre_publicacao">
+                                Por {{ publicacao['nome'] }} en {{ publicacao['created'].strftime('%d-%m-%Y') }}
+                            </div>
+                        </div>
+                    </header>
+                    <p>{{ publicacao['body'] }}</p>
+                </article>
+                {% if not loop.last %}
+                    <hr class="line_workshop">
                 {% endif %}
-            </form>
+            {% endfor %}
+            </div>
         </div>
     </section>
 
