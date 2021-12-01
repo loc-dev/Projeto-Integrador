@@ -250,3 +250,101 @@ def es_delete_voluntario(id):
     db.commit()
 
     return redirect(url_for('auth.es_login_voluntario'))
+
+# Visualização da função 'pt_workshop_voluntario' será apresentado as publicações que foram recém-criadas, as mais recentes estão em destaque primeiro
+@bp.route('/dashboard/voluntario/workshop')
+@pt_login_required_voluntario
+def pt_workshop_voluntario():
+    db = get_db()
+    publicacoes = db.execute(
+        "SELECT p.id, title, body, created, author_id, nome"
+        " FROM workshop p JOIN voluntario v ON p.author_id = v.id"
+        " ORDER BY created DESC"
+    ).fetchall()
+
+    return render_template('pt_br/dashboard/pt_workshop_voluntario_page.html', publicacoes=publicacoes)
+
+# Visualização da função 'pt_create_workshop', servirá para o usuário Voluntário criar a sua própria publicação de Workshop
+@bp.route('/dashboard/voluntario/workshop/publicar', methods=('GET', 'POST'))
+@pt_login_required_voluntario
+def pt_create_workshop():
+    if request.method == 'POST':
+        title = request.form['titulo']
+        body = request.form['texto']
+        error = None
+
+        if not title:
+            error = 'Por favor, o Título é obrigatório.'
+
+        if error is not None:
+            flash(error)
+        else:
+            db = get_db()
+            db.execute(
+                "INSERT INTO workshop (title, body, author_id)"
+                " VALUES (?, ?, ?)",
+                (title, body, g.voluntario['id'])
+            )
+            db.commit()
+
+            return redirect(url_for('dashboard.pt_workshop_voluntario'))
+
+    return render_template('pt_br/dashboard/pt_workshop_p_voluntario_page.html')
+
+# A função 'get_workshop', possibilita verificar se a determinada publicação de workshop é do autor,
+# sendo útil, para utilizar na visualização de 'pt_update_workshop' e 'pt_delete_workshop'
+def get_workshop(id, check_author=True):
+    publicacao = get_db().execute(
+        "SELECT p.id, title, body, created, author_id, nome"
+        " FROM workshop p JOIN voluntario v ON p.author_id = v.id"
+        " WHERE p.id = ?",
+        (id,)
+    ).fetchone()
+
+    if publicacao is None:
+        abort(404, f"Publicação de Workshop com id {id} não existe.")
+
+    if check_author and publicacao['author_id'] != g.voluntario['id']:
+        abort(403)
+
+    return publicacao
+
+# Visualização a função 'pt_update_workshop', servirá para o usuário Voluntário editar a sua própria publicação de Workshop
+@bp.route('/dashboard/voluntario/workshop/<int:id>/editar', methods=('GET', 'POST'))
+@pt_login_required_voluntario
+def pt_update_workshop(id):
+    publicacao = get_workshop(id)
+
+    if request.method == 'POST':
+        title = request.form['titulo']
+        body = request.form['texto']
+        error = None
+
+        if not title:
+            error = 'Por favor, o Título é obrigatório.'
+
+        if error is not None:
+            flash(error)
+        else:
+            db = get_db()
+            db.execute(
+                "UPDATE workshop SET title = ?, body = ?"
+                " WHERE id = ?",
+                (title, body, id)
+            )
+            db.commit()
+            return redirect(url_for('dashboard.pt_workshop_voluntario'))
+
+    return render_template('pt_br/dashboard/pt_workshop_u_voluntario_page.html', publicacao=publicacao)
+
+# Visualização a função 'pt_delete_workshop', servirá para o usuário Voluntário remover a sua própria publicação de Workshop
+@bp.route('/dashboard/voluntario/workshop/<int:id>/excluir', methods=('POST',))
+@pt_login_required_voluntario
+def pt_delete_workshop(id):
+    get_workshop(id)
+
+    db = get_db()
+    db.execute('DELETE FROM workshop WHERE id = ?', (id,))
+    db.commit()
+
+    return redirect(url_for('dashboard.pt_workshop_voluntario'))
