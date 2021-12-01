@@ -1,8 +1,8 @@
-{% extends 'pt_br/model.html' %}
-{% block title %}Workshop{% endblock %}
+{% extends 'es_es/model.html' %}
+{% block title %}Talleres{% endblock %}
 {% block head %}
     {{ super() }}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/partials/page-workshop-voluntario.css') }}"> <!-- Definindo a Formatação para página de Workshop para Voluntário -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/partials/page-workshop-voluntario.css') }}"> <!-- Definindo a Formatação para página de Dashboard para Voluntário -->
 {% endblock %}
 
 {% block body %}
@@ -10,33 +10,33 @@
 
     <nav id="menu_acessibilidade">
         <ul class="nav-list">
-            <li><a role="link" href="#menu_idioma">Pular para o menu de idioma</a></li>
-            <li><a role="link" href="#menu">Pular para o menu principal</a></li>
-            <li><a role="link" href="#conteudo">Pular para o conteúdo em destaque</a></li>
+            <li><a role="link" href="#menu_idioma">Saltar al menú de idiomas</a></li>
+            <li><a role="link" href="#menu">Saltar al menú</a></li>
+            <li><a role="link" href="#conteudo">Saltar al contenido destacado</a></li>
             <li><a role="option" href="#altocontraste" id="altocontraste" onclick="window.toggleContrast()" onkeydown="window.toggleContrast()"><i class="fas fa-adjust"></i></a></li>
         </ul>
     </nav>
 
     <nav id="menu_idioma">
         <ul class="nav-list">
-            <li><a role="link" href="#">Inglês</a></li>
-            <li><a role="link" href="{{ url_for('dashboard.es_workshop_voluntario') }}">Espanhol</a></li>
-            <li><a role="link" href="#">Francês</a></li>
-            <li><a role="link" href="{{ url_for('dashboard.pt_workshop_voluntario') }}">Português</a></li>
+            <li><a role="link" href="#">Inglés</a></li>
+            <li><a role="link" href="{{ url_for('dashboard.es_workshop_voluntario') }}">Español</a></li>
+            <li><a role="link" href="#">Francés</a></li>
+            <li><a role="link" href="{{ url_for('dashboard.pt_workshop_voluntario') }}">Portugués</a></li>
         </ul>
     </nav>
 
-    <a role="link" class="logo" href="{{ url_for('content.pt_home') }}"><img alt="Logo da página Info Mãos Unidas" src="{{ url_for('static', filename='img/logo/logo.png') }}"></a>
+    <a role="link" class="logo" href="{{ url_for('content.es_home') }}"><img alt="Logo da página Info Mãos Unidas" src="{{ url_for('static', filename='img/logo/logo.png') }}"></a>
 
     <nav id="menu">
         <ul class="nav-list">
             {% if g.voluntario %}
-            <li><a role="link" href="{{ url_for('dashboard.pt_workshop_voluntario')}}">Workshops</a></li>
-            <li><a role="link" href="{{ url_for('dashboard.pt_edit_voluntario', id=g.voluntario['id']) }}">{{ g.voluntario['nome'] }}</a></li>
-            <li><a role="link" href="{{ url_for('auth.pt_logout_voluntario') }}">Sair</a></li>
+            <li><a role="link" href="{{ url_for('dashboard.es_workshop_voluntario') }}">Talleres</a></li>
+            <li><a role="link" href="{{ url_for('dashboard.es_edit_voluntario', id=g.voluntario['id']) }}">{{ g.voluntario['nome'] }}</a></li>
+            <li><a role="link" href="{{ url_for('auth.es_logout_voluntario') }}">Salir</a></li>
             {% else %}
-            <li><a role="link" href="{{ url_for('content.pt_cadastrar') }}">Cadastrar</a></li>
-            <li><a role="link" href="{{ url_for('content.pt_login') }}">Login</a></li>
+            <li><a role="link" href="{{ url_for('content.es_cadastrar') }}">Crear una cuenta</a></li>
+            <li><a role="link" href="{{ url_for('content.es_login') }}">Iniciar sesión</a></li>
             {% endif %}
         </ul>
     </nav>
@@ -46,13 +46,13 @@
 <main>
 
     <hr class="line_menu">
-    <h1 id="conteudo">Workshop</h1>
+    <h1 id="conteudo">Talleres</h1>
     <section class="volunteer_full_workshops">
         <div class='volunteer_box_workshop'>
             <header class="volunteer_new_workshop">
                 {% if g.voluntario %}
                     <ul>
-                        <li><a role='link' href="{{ url_for('dashboard.pt_create_workshop') }}">Nova Publicação</a></li>
+                        <li><a role='link' href="{{ url_for('dashboard.es_create_workshop') }}">Nueva publicación</a></li>
                     </ul>
                 {% endif %}
             </header>
@@ -68,11 +68,11 @@
                         <div>
                             <h1>{{ publicacao['title'] }}</h1>
                             <div class="sobre_publicacao">
-                                Por {{ publicacao['nome'] }} em {{ publicacao['created'].strftime('%d-%m-%Y') }}
+                                Por {{ publicacao['nome'] }} en {{ publicacao['created'].strftime('%d-%m-%Y') }}
                             </div>
                         </div>
                         {% if g.voluntario['id'] == publicacao['author_id'] %}
-                            <a class="editar_publicacao" href="{{ url_for('dashboard.pt_update_workshop', id=publicacao['id']) }}">Editar Publicação</a>
+                            <a class="editar_publicacao" href="{{ url_for('dashboard.es_update_workshop', id=publicacao['id']) }}">Modificar la publicación</a>
                         {% endif %}
                     </header>
                     <p>{{ publicacao['body'] }}</p>
@@ -91,9 +91,10 @@
     <div class="logo_footer clear">
         <img src="{{ url_for('static', filename='img/logo/logo.png') }}">
     </div>
-    <p>Copyright &copy; 2021 - Todos os direitos reservados pela Info Mãos Unidas</p>
+    <p>&copy; Copyright 2021 por Info Mãos Unidas</p>
 </footer>
 
 <script src="js/contrast.class.js"></script>
+
 
 {% endblock %}

@@ -1,8 +1,8 @@
 {% extends 'es_es/model.html' %}
-{% block title %}Perfil Voluntario{% endblock %}
+{% block title %}Modificar la publicación{% endblock %}
 {% block head %}
     {{ super() }}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/partials/page-perfil-voluntario.css') }}"> <!-- Definindo a Formatação para página de Perfil de Voluntário -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/partials/page-workshop-editar-voluntario.css') }}"> <!-- Definindo a Formatação para página de Editar uma publicação de Workshop para Voluntário -->
 {% endblock %}
 
 {% block body %}
@@ -20,9 +20,9 @@
     <nav id="menu_idioma">
         <ul class="nav-list">
             <li><a role="link" href="#">Inglés</a></li>
-            <li><a role="link" href="{{ url_for('dashboard.es_edit_voluntario', id=g.voluntario['id']) }}">Español</a></li>
+            <li><a role="link" href="{{ url_for('dashboard.es_update_workshop', id=publicacao['id']) }}">Español</a></li>
             <li><a role="link" href="#">Francés</a></li>
-            <li><a role="link" href="{{ url_for('dashboard.pt_edit_voluntario', id=g.voluntario['id']) }}">Portugués</a></li>
+            <li><a role="link" href="{{ url_for('dashboard.pt_update_workshop', id=publicacao['id']) }}">Portugués</a></li>
         </ul>
     </nav>
 
@@ -46,45 +46,30 @@
 <main>
 
     <hr class="line_menu">
-    <h1 id="conteudo">Perfil</h1>
-    <section class="volunteer_mini_profile">
-        <div class="volunteer_box_profile">
-            <h2>Perfil Completo</h2>
-            <br>
-            <form method="post" class="volunteer">
-
-                <fieldset class="field_name">
-                    <label for="nome">Nombre ( * )</label>
-                    <input type="text" name="nome" id="nome" placeholder="" value="{{ request.form['nome'] or g.voluntario['nome'] }}" required>
+    <h1 id="conteudo">Modificar la publicación</h1>
+    <section class="edit_form_workshop">
+        <div class="box_workshop">
+            <form method="post" class="workshop">
+                <fieldset class="field_titulo">
+                    <label for="titulo"></label>
+                    <input name="titulo" id="titulo" placeholder="Título ( * )" value="{{ request.form['title'] or publicacao['title'] }}" required>
                 </fieldset>
-
-                <fieldset class="field_surname">
-                    <label for="sobrenome">Apellido</label>
-                    <input type="text" name="sobrenome" id="sobrenome" placeholder="" value="{{ request.form['sobrenome'] or g.voluntario['sobrenome'] }}">
-                </fieldset>
-
-                <fieldset class="field_email">
-                    <label for="email">Correo electrónico ( * )</label>
-                    <input type="email" name="email" id="email" placeholder="" value="{{ request.form['email'] or g.voluntario['email'] }}" required>
+            
+                <fieldset class="field_texto">
+                    <label for="texto"></label>
+                    <textarea name="texto" id="texto" placeholder="¡Ingresa la publicación aquí!">{{ request.form['body'] or publicacao['body'] }}</textarea>
                 </fieldset>
                 {% for message in get_flashed_messages() %}
                     <div class="flash">{{ message }}</div>
                 {% endfor %}
 
-                <button type="submit" class="button_form">Guardar</button>
-                
-            </form>
-        </div>
-    </section>
+                <br>
 
-    <section class="volunteer_account">
-        <div class="volunteer_box_account_delete">
-            <h2>Eliminar cuenta</h2>
-            <br>
-            <form action="{{ url_for('dashboard.es_delete_voluntario', id=g.voluntario['id']) }}" method="post">
-                <button type="submit" class="button_form_delete" onclick="return confirm('¿Estás seguro de que deseas eliminar tu cuenta?');">
-                    Eliminar
-                </button>
+                <button type="submit" class="button_form">Cambiar</button>
+            </form>
+            <hr>
+            <form action="{{ url_for('dashboard.es_delete_workshop', id=publicacao['id']) }}" method="post" class="workshop">
+                <button type="submit" class="button_form">Borrar</button>
             </form>
         </div>
     </section>
@@ -101,3 +86,4 @@
 <script src="js/contrast.class.js"></script>
 
 {% endblock %}
+
