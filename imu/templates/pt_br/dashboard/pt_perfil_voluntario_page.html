@@ -31,7 +31,7 @@
     <nav id="menu">
         <ul class="nav-list">
             {% if g.voluntario %}
-            <li><a role="link" href="#">Workshops</a></li>
+            <li><a role="link" href="{{ url_for('dashboard.pt_workshop_voluntario') }}">Workshops</a></li>
             <li><a role="link" href="{{ url_for('dashboard.pt_edit_voluntario', id=g.voluntario['id']) }}">{{ g.voluntario['nome'] }}</a></li>
             <li><a role="link" href="{{ url_for('auth.pt_logout_voluntario') }}">Sair</a></li>
             {% else %}

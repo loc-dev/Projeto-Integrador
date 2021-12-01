@@ -1,8 +1,8 @@
 {% extends 'pt_br/model.html' %}
-{% block title %}Dashboard{% endblock %}
+{% block title %}Nova Publicação{% endblock %}
 {% block head %}
     {{ super() }}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/partials/page-dashboard-voluntario.css') }}"> <!-- Definindo a Formatação para página de Dashboard para Voluntário -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/partials/page-workshop-criar-voluntario.css') }}"> <!-- Definindo a Formatação para página de Criar uma publicação de Workshop para Voluntário -->
 {% endblock %}
 
 {% block body %}
@@ -20,9 +20,9 @@
     <nav id="menu_idioma">
         <ul class="nav-list">
             <li><a role="link" href="#">Inglês</a></li>
-            <li><a role="link" href="{{ url_for('dashboard.es_index_voluntario') }}">Espanhol</a></li>
+            <li><a role="link" href="#">Espanhol</a></li>
             <li><a role="link" href="#">Francês</a></li>
-            <li><a role="link" href="{{ url_for('dashboard.pt_index_voluntario') }}">Português</a></li>
+            <li><a role="link" href="{{ url_for('dashboard.pt_create_workshop') }}">Português</a></li>
         </ul>
     </nav>
 
@@ -31,7 +31,7 @@
     <nav id="menu">
         <ul class="nav-list">
             {% if g.voluntario %}
-            <li><a role="link" href="{{ url_for('dashboard.pt_workshop_voluntario') }}">Workshops</a></li>
+            <li><a role="link" href="{{ url_for('dashboard.pt_workshop_voluntario')}}">Workshops</a></li>
             <li><a role="link" href="{{ url_for('dashboard.pt_edit_voluntario', id=g.voluntario['id']) }}">{{ g.voluntario['nome'] }}</a></li>
             <li><a role="link" href="{{ url_for('auth.pt_logout_voluntario') }}">Sair</a></li>
             {% else %}
@@ -43,28 +43,30 @@
 
 </header>
 
+
 <main>
 
     <hr class="line_menu">
-    <h1 id="conteudo">Dashboard</h1>
-    <section class="volunteer_mini_profile">
-        <div class="volunteer_box_profile">
-            <h2>Perfil Resumido</h2>
-            <br>
-            <form method="get" class="volunteer">
-                {% if g.voluntario %}
-
-                <fieldset class="field_name">
-                    <label for="nome">Nome ( * )</label>
-                    <input type="text" name="nome" id="nome" placeholder="" value="{{ g.voluntario['nome'] }}" readonly>
+    <h1 id="conteudo">Nova Publicação</h1>
+    <section class="new_form_workshop">
+        <div class="box_workshop">
+            <form method="post" class="workshop">
+                <fieldset class="field_titulo">
+                    <label for="titulo"></label>
+                    <input name="titulo" id="titulo" placeholder="Título ( * )" value="{{ request.form['title'] }}" required>
                 </fieldset>
-
-                <fieldset class="field_surname">
-                    <label for="sobrenome">Sobrenome</label>
-                    <input type="text" name="sobrenome" id="sobrenome" placeholder="" value="{{ g.voluntario['sobrenome'] }}" readonly>
+            
+                <fieldset class="field_texto">
+                    <label for="texto"></label>
+                    <textarea name="texto" id="texto" placeholder="Digite a publicação aqui!">{{ request.form['body'] }}</textarea>
                 </fieldset>
+                {% for message in get_flashed_messages() %}
+                    <div class="flash">{{ message }}</div>
+                {% endfor %}
 
-                {% endif %}
+                <br>
+
+                <button type="submit" class="button_form">Publicar</button>
             </form>
         </div>
     </section>
@@ -78,6 +80,6 @@
     <p>Copyright &copy; 2021 - Todos os direitos reservados pela Info Mãos Unidas</p>
 </footer>
 
-<script src="js/contrast.class.js"></script>
+<script src="{{ url_for('static', filename='js/carousel.js') }}"></script>
 
 {% endblock %}

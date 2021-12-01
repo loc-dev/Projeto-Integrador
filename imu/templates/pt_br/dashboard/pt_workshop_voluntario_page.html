@@ -1,0 +1,99 @@
+{% extends 'pt_br/model.html' %}
+{% block title %}Workshop{% endblock %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/partials/page-workshop-voluntario.css') }}"> <!-- Definindo a Formatação para página de Workshop para Voluntário -->
+{% endblock %}
+
+{% block body %}
+<header>
+
+    <nav id="menu_acessibilidade">
+        <ul class="nav-list">
+            <li><a role="link" href="#menu_idioma">Pular para o menu de idioma</a></li>
+            <li><a role="link" href="#menu">Pular para o menu principal</a></li>
+            <li><a role="link" href="#conteudo">Pular para o conteúdo em destaque</a></li>
+            <li><a role="option" href="#altocontraste" id="altocontraste" onclick="window.toggleContrast()" onkeydown="window.toggleContrast()"><i class="fas fa-adjust"></i></a></li>
+        </ul>
+    </nav>
+
+    <nav id="menu_idioma">
+        <ul class="nav-list">
+            <li><a role="link" href="#">Inglês</a></li>
+            <li><a role="link" href="#">Espanhol</a></li>
+            <li><a role="link" href="#">Francês</a></li>
+            <li><a role="link" href="{{ url_for('dashboard.pt_workshop_voluntario') }}">Português</a></li>
+        </ul>
+    </nav>
+
+    <a role="link" class="logo" href="{{ url_for('content.pt_home') }}"><img alt="Logo da página Info Mãos Unidas" src="{{ url_for('static', filename='img/logo/logo.png') }}"></a>
+
+    <nav id="menu">
+        <ul class="nav-list">
+            {% if g.voluntario %}
+            <li><a role="link" href="{{ url_for('dashboard.pt_workshop_voluntario')}}">Workshops</a></li>
+            <li><a role="link" href="{{ url_for('dashboard.pt_edit_voluntario', id=g.voluntario['id']) }}">{{ g.voluntario['nome'] }}</a></li>
+            <li><a role="link" href="{{ url_for('auth.pt_logout_voluntario') }}">Sair</a></li>
+            {% else %}
+            <li><a role="link" href="{{ url_for('content.pt_cadastrar') }}">Cadastrar</a></li>
+            <li><a role="link" href="{{ url_for('content.pt_login') }}">Login</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+</header>
+
+<main>
+
+    <hr class="line_menu">
+    <h1 id="conteudo">Workshop</h1>
+    <section class="volunteer_full_workshops">
+        <div class='volunteer_box_workshop'>
+            <header class="volunteer_new_workshop">
+                {% if g.voluntario %}
+                    <ul>
+                        <li><a role='link' href="{{ url_for('dashboard.pt_create_workshop') }}">Nova Publicação</a></li>
+                    </ul>
+                {% endif %}
+            </header>
+            {% for message in get_flashed_messages() %}
+                <div class="flash">{{ message }}</div>
+            {% endfor %}
+            <br>
+
+            <div class='box_publicacoes'>
+            {% for publicacao in publicacoes %}
+                <article class="publicacao">
+                    <header>
+                        <div>
+                            <h1>{{ publicacao['title'] }}</h1>
+                            <div class="sobre_publicacao">
+                                Por {{ publicacao['nome'] }} em {{ publicacao['created'].strftime('%d-%m-%Y') }}
+                            </div>
+                        </div>
+                        {% if g.voluntario['id'] == publicacao['author_id'] %}
+                            <a class="editar_publicacao" href="{{ url_for('dashboard.pt_update_workshop', id=publicacao['id']) }}">Editar Publicação</a>
+                        {% endif %}
+                    </header>
+                    <p>{{ publicacao['body'] }}</p>
+                </article>
+                {% if not loop.last %}
+                    <hr class="line_workshop">
+                {% endif %}
+            {% endfor %}
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="logo_footer clear">
+        <img src="{{ url_for('static', filename='img/logo/logo.png') }}">
+    </div>
+    <p>Copyright &copy; 2021 - Todos os direitos reservados pela Info Mãos Unidas</p>
+</footer>
+
+<script src="js/contrast.class.js"></script>
+
+{% endblock %}
