@@ -163,6 +163,18 @@ def pt_workshop_refugiado():
 
     return render_template('pt_br/dashboard/pt_workshop_refugiado_page.html', publicacoes=publicacoes)
 
+# Visualização em espanhol da função 'es_workshop_refugiado' será apresentado as publicações que foram recém-criadas, as mais recentes estão em destaque primeiro
+@bp.route('/dashboard/refugiado/workshop/es')
+@es_login_required_refugiado
+def es_workshop_refugiado():
+    db = get_db()
+    publicacoes = db.execute(
+        "SELECT p.id, title, body, created, author_id, nome"
+        " FROM workshop p JOIN voluntario v ON p.author_id = v.id"
+        " ORDER BY created DESC"
+    ).fetchall()
+
+    return render_template('es_es/dashboard/es_workshop_refugiado_page.html', publicacoes=publicacoes)
 
 # A função 'unico_voluntario', possibilita selecionar somente o refugiado de um determinado id,
 # para utilizar nas outras funções em que a visualização permitindo a alteração de dados e exclusão de conta
