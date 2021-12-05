@@ -1,0 +1,110 @@
+body {
+    background-color: rgba(200,172,116, 0.6);
+}
+
+main {
+    /* background-color: lightsalmon; */
+    height: 100vh;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.line_menu {
+    border: 2px solid #AE7236;
+    box-shadow: 0px 2px 6px black;
+    width: 95%;
+    margin: 0 auto;
+}
+
+main h1 {
+    margin: 25px 25px;
+    color: #AE6721;
+}
+
+.volunteer_full_workshops {
+    /* background-color:cornflowerblue; */
+    height: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.volunteer_box_workshop {
+    background-color: #fff;
+    border: 4px solid #AE7236;
+    border-radius: 18px;
+    height: auto;
+    width: 82vw;
+    margin: auto auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 14px;
+}
+
+.box_publicacoes {
+    /* background-color: lightpink; */
+    display: block;
+
+    /* text-align: center; */
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+}
+
+.publicacao header {
+    /* background-color: lightgreen; */
+    margin: 0;
+    padding: 0;
+    height: 12vh;
+    width: auto;
+    margin-bottom: 12px;
+}
+
+.publicacao header h1 {
+    /* background-color: lightsalmon; */
+    margin: 0;
+    padding: 0;
+    color: #AE6721;
+    font-weight: 800;
+}
+
+.publicacao header .sobre_publicacao {
+    /* background-color: lightsalmon; */
+    margin: 0;
+    padding: 0;
+    color: black;
+    font-size: 18px;
+    font-weight: 400;
+    width: 50%;
+    /* justify-content: space-between; */
+}
+
+.line_workshop {
+    border: 1px solid #AE7236;
+    box-shadow: 0px 2px 6px black;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 25px;
+    margin-bottom: 25px;
+
+}
+
+footer {
+    /* background-color: lightskyblue; */
+    height: 12vh;
+    width: auto;
+    margin: 0 auto;
+    /* padding-top: 50px; */
+}
+
+footer .logo_footer {
+    text-align: center;
+}
+
+footer .logo_footer img {
+    width: 56px;
+    height: 56px;
+}
+
+footer p {
+    text-align: center;
+    font-size: 12px;
+}

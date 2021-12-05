@@ -1,0 +1,155 @@
+{% extends 'pt_br/model.html' %}
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<header>
+
+    <nav id="menu_acessibilidade">
+        <ul class="nav-list">
+            <li><a role="link" href="#menu_idioma">Pular para o menu de idioma</a></li>
+            <li><a role="link" href="#menu">Pular para o menu principal</a></li>
+            <li><a role="link" href="#conteudo">Pular para o conteúdo em destaque</a></li>
+            <li><a role="option" href="#altocontraste" id="altocontraste" onclick="window.toggleContrast()" onkeydown="window.toggleContrast()"><i class="fas fa-adjust"></i></a></li>
+        </ul>
+    </nav>
+
+    <nav id="menu_idioma">
+        <ul class="nav-list">
+            <li><a role="link" href="#">Inglês</a></li>
+            <li><a role="link" href="{{ url_for('content.es_home') }}">Espanhol</a></li>
+            <li><a role="link" href="#">Francês</a></li>
+            <li><a role="link" href="{{ url_for('content.pt_home') }}">Português</a></li>
+        </ul>
+    </nav>
+
+    <a role="link" class="logo" href="{{ url_for('content.pt_home') }}"><img alt="Logo da página Info Mãos Unidas" src="{{ url_for('static', filename='img/logo/logo.png') }}"></a>
+
+    <nav id="menu">
+        <ul class="nav-list">
+            <li><a role="link" href="{{ url_for('content.pt_home') }}">Home</a></li>
+            <li><a role="link" href="{{ url_for('content.pt_sobre') }}">Sobre nós</a></li>
+            <li><a role="link" href="{{ url_for('content.pt_cadastrar') }}">Cadastrar</a></li>
+            <li><a role="link" href="{{ url_for('content.pt_login') }}">Login</a></li>
+        </ul>
+    </nav>
+
+</header>
+
+<main>
+
+    <hr class="line_menu">
+    <section id="conteudo" class="carousel-wrapper">
+        <div id="items">
+            <div class="item">
+                <figure>
+                    <a href="#">
+                        <img alt="Meninas de várias nacionalidades sorrindo para foto" src="{{ url_for('static', filename='img/carousel/people_640px.jpg') }}">
+                    </a>
+                    <figcaption>
+                        <a href="#">A Importância dos Serviços Comunitários</a>
+                        <br>
+                        <small>
+                            Os serviços comunitários são os que mais possibilitam recursos e atendimentos aos refugiados
+                        </small>
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="item">
+                <figure>
+                    <a href="#">
+                        <img alt="Uma mulher saltando no ar, demonstrando sua felicidade" src="{{ url_for('static', filename='img/carousel/inspiration_640px.jpg') }}">
+                    </a>
+                    <figcaption>
+                        <a href="#">IFMT lança um programa para capacitação profissional aos refugiados venezuelanos</a>
+                        <br>
+                        <small>
+                            O Instituto Federal de Mato Grosso, estão compartilhando conhecimentos por meio de iniciativas online
+                        </small>
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="item">
+                <figure>
+                    <a href="#">
+                        <img alt="Passagem de trilho de trem" src="{{ url_for('static', filename='img/carousel/train-tracks_640px.jpg')}}">
+                    </a>
+                    <figcaption>
+                        <a href="#">Novas escolhas com boas oportunidades</a>
+                        <br>
+                        <small>
+                            As oportunidades que estão surgindo no momento da pandemia COVID-19
+                        </small>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <hr class="line_section">
+    <section class="articles">
+        <h2>Artigos Recentes</h2>
+        <article class="article">
+            <!-- Título -->
+            <h3>A Importância dos Serviços Comunitários</h3>
+            <!-- Imagem -->
+            <img alt="Meninas de várias nacionalidades sorrindo para foto" src="{{ url_for('static', filename='img/article/people_640px.jpg') }}">
+            <!-- Descrição -->
+            <p>
+                As parcerias com ong’s e instituições viabilizam o desenvolvimento projetos inovadores, serviços comunitários que possibilitem mais recursos e atendimento adequado onde possa atender a maioria, em busca de assegurar um refúgio que possibilite sua independência e sobrevivência no país.
+            </p>
+            <button class="button_article" type="button"><a href="#">Leia mais</a></button>
+            <div class="clear"></div>
+        </article>
+    </section>
+    <div class="clear"></div>
+
+    <hr class="line_section">
+    <section class="articles">
+        <h2>Oportunidades</h2>
+        <article class="article">
+            <!-- Título -->
+            <h3>IFMT lança um programa para capitação profissional aos refugiados venezuelanos</h3>
+            <!-- Imagem -->
+            <img alt="Uma mulher saltando no ar, demonstrando sua felicidade" src="{{ url_for('static', filename='img/article/inspiration_640px.jpg') }}">
+            <!-- Descrição -->
+            <p>
+                Oportunidades proporcionam recursos que reflete na probabilidade de permanência. Workshop, cursos e seletiva de empregos apresenta objetivo de capacitação para uma vida mais sustentável, oferecidas por instituições e casas.
+            </p>
+            <button class="button_article" type="button"><a href="#">Leia mais</a></button>
+            <div class="clear"></div>
+        </article>
+    </section>
+    <div class="clear"></div>
+
+    <aside class="survey">
+        <h3>Enquete</h3>
+        <p>Desejamos conhecer um pouco mais do nosso público, portanto, responda uma das alternativas abaixo.</p>
+        <p>Qual conteúdo você gostaria que tivesse no Info Mãos Unidas?</p>
+        <form>
+            <input type="checkbox" id="informacao" name="informacao1" value="1">
+            <label for="informacao1"> Dicas de empreendedorismo </label>
+            <br>
+            <input type="checkbox" id="informacao" name="informacao2" value="2">
+            <label for="informacao2"> Cursos disponíveis de Lingua Portuguesa </label>
+            <br>
+            <input type="checkbox" id="informacao" name="informacao3" value="3">
+            <label for="informacao3"> Workshop para desenvolvimento profissional </label>
+            <br>
+            <br>
+            <br>
+            <button class="button_form" type="submit" value="Confirmar">Confirmar</button>
+        </form>
+    </aside>
+
+</main>
+
+<footer>
+    <div class="logo_footer">
+        <img alt="Logo do Info Mãos Unidas no rodapé da aplicação" src="{{ url_for('static', filename='img/logo/logo.png') }}">
+    </div>
+    <p>Copyright &copy; 2021 - Todos os direitos reservados pela Info Mãos Unidas</p>
+</footer>
+
+<script src="{{ url_for('static', filename='js/carousel.js') }}"></script>
+
+{% endblock %}

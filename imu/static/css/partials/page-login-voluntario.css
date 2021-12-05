@@ -1,0 +1,198 @@
+body {
+    background-color: rgba(200,172,116, 0.6);
+}
+
+main {
+    /* background-color: lightsalmon; */
+    height: 70vh;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.line_menu {
+    border: 2px solid #AE7236;
+    box-shadow: 0px 2px 6px black;
+    width: 95%;
+    margin: 0 auto;
+}
+
+main h1 {
+    margin: 25px 25px;
+    color: #AE6721;
+}
+
+.volunteer_form_login {
+    /* background-color:cornflowerblue; */
+    height: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.volunteer_box_login {
+    background-color: #fff;
+    border: 4px solid #AE7236;
+    border-radius: 18px;
+    height: auto;
+    width: 26vw;
+    margin: auto auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 14px;
+}
+
+.volunteer {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/***
+Formulário - Campo E-mail
+***/
+
+.field_email {
+    padding: 0;
+    border: none;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 16px;
+}
+
+.field_email input {
+    /* background-color: coral; */
+    border: none;
+    border-bottom: 1px solid black;
+    border-radius: 4px;
+    width: 90%;
+    padding: 8px;
+}
+
+.field_email input:focus {
+    border-color: #FFA317;
+    box-shadow: 0 0 10px #FFA317;
+    border-radius: 4px;
+    outline: none;
+}
+
+/***
+Formulário - Campo Senha
+***/
+
+.field_password {
+    padding: 0;
+    border: none;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 16px;
+}
+
+.field_password input {
+    /* background-color: coral; */
+    border: none;
+    border-bottom: 1px solid black;
+    border-radius: 4px;
+    width: 90%;
+    padding: 8px;
+}
+
+.field_password input:focus {
+    border-color: #FFA317;
+    box-shadow: 0 0 10px #FFA317;
+    border-radius: 4px;
+    outline: none;
+}
+
+.flash {
+    margin: 1em 0;
+    padding: 1em;
+    background: #fff;
+    border: 1px solid red;
+    color: red;
+    font-weight: bold;
+}
+
+.volunteer p {
+    font-size: 14px;
+}
+
+.volunteer .recuperar_senha a {
+    color: #AE6721;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.volunteer .recuperar_senha a:hover {
+    border-bottom: 2px solid #AE6721;
+    transition: .1s;
+}
+
+.button_form {
+    background-color: #ffffffaa;
+    border: none;
+    border: 1px solid black;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 12px;
+    padding-left: 12px;
+    width: 12vw;
+    border-radius: 18px;
+    color: #AE6721;
+    font-weight: bold;
+}
+
+.button_form:hover {
+    background-color: #AE6721;
+    color: #ffff;
+    font-weight: bold;
+}
+
+.button_form:focus {
+    border-color: #FFA317;
+    box-shadow: 0 0 18px #FFA317;
+    border-radius: 18px;
+    outline: none;
+}
+
+.box_cadastrar {
+    /* background-color: lightgreen; */
+    height: 10vh;
+    width: auto;
+    text-align: center;
+    padding: 30px;
+    color: #AE6721;
+}
+
+.box_cadastrar a {
+    color: #AE6721;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.box_cadastrar a:hover {
+    border-bottom: 2px solid #AE6721;
+    transition: .1s;
+}
+
+footer {
+    /* background-color: lightskyblue; */
+    height: 12vh;
+    width: auto;
+    margin: 0 auto;
+    /* padding-top: 50px; */
+}
+
+footer .logo_footer {
+    text-align: center;
+}
+
+footer .logo_footer img {
+    width: 56px;
+    height: 56px;
+}
+
+footer p {
+    text-align: center;
+    font-size: 12px;
+}

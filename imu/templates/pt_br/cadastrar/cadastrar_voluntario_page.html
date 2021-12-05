@@ -1,0 +1,310 @@
+{% extends 'pt_br/model.html' %}
+{% block title %}Cadastrar Voluntário{% endblock %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/partials/page-cadastrar-voluntario.css') }}"> <!-- Definindo a Formatação para página de Formulário de Cadastro para Voluntário -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> <!-- Definindo o jquery -->
+{% endblock %}
+
+{% block body %}
+<header>
+
+    <nav id="menu_acessibilidade">
+        <ul class="nav-list">
+            <li><a role="link" href="#menu_idioma">Pular para o menu de idioma</a></li>
+            <li><a role="link" href="#menu">Pular para o menu principal</a></li>
+            <li><a role="link" href="#conteudo">Pular para o conteúdo em destaque</a></li>
+            <li><a role="option" href="#altocontraste" id="altocontraste" accesskey="3" onclick="window.toggleContrast()" onkeydown="window.toggleContrast()"><i class="fas fa-adjust"></i></a></li>
+        </ul>
+    </nav>
+
+    <nav id="menu_idioma">
+        <ul class="nav-list">
+            <li><a role="link" href="#">Inglês</a></li>
+            <li><a role="link" href="{{ url_for('auth.es_cadastro_voluntario') }}">Espanhol</a></li>
+            <li><a role="link" href="#">Francês</a></li>
+            <li><a role="link" href="{{ url_for('auth.pt_cadastro_voluntario') }}">Português</a></li>
+        </ul>
+    </nav>
+
+    <a role="link" class="logo" href="{{ url_for('content.pt_home') }}"><img src="{{ url_for('static', filename='img/logo/logo.png') }}" alt="Logo da página Info Mãos Unidas"></a>
+
+    <nav id="menu">
+        <ul class="nav-list">
+            <li><a role="link" href="{{ url_for('content.pt_home') }}">Home</a></li>
+            <li><a role="link" href="{{ url_for('content.pt_sobre') }}">Sobre nós</a></li>
+            <li><a role="link" href="{{ url_for('content.pt_cadastrar') }}">Cadastrar</a></li>
+            <li><a role="link" href="{{ url_for('content.pt_login') }}">Login</a></li>
+        </ul>
+    </nav>
+
+</header>
+
+<main>
+
+    <hr class="line_menu">
+    <h1 id="conteudo">Cadastrar Voluntário</h1>
+    <section class="volunteer_form_register">
+        <div class="volunteer_box_register">
+            <form method="post" class="volunteer">
+                <fieldset class="field_name">
+                    <label for="nome"></label>
+                    <input type="text" name="nome" id="nome" placeholder="Nome ( * )">
+                </fieldset>
+
+                <fieldset class="field_surname">
+                    <label for="sobrenome"></label>
+                    <input type="text" name="sobrenome" id="sobrenome" placeholder="Sobrenome">
+                </fieldset>
+
+                <fieldset class="field_email">
+                    <label for="email"></label>
+                    <input type="email" name="email" id="email" placeholder="E-mail ( * )" required>
+                </fieldset>
+
+                <fieldset class="field_password">
+                    <label for="senha"></label>
+                    <input type="password" name="senha" id="senha" placeholder="Senha ( * )" required>
+                </fieldset>
+                {% for message in get_flashed_messages() %}
+                    <div class="flash">{{ message }}</div>
+                {% endfor %}
+
+                <p>
+                    ( <b>*</b> ) Preenchimento Obrigatório
+                </p>
+                <br>
+                <p class="termos_politica">
+                    Ao cadastrar, você concorda com nossos <a id="show_termo_de_uso" href="javascript:;">Termos de Uso</a> e nossa <a id="show_politica" href="javascript:;">Política de Privacidade</a>.
+                </p>
+
+                <div class="termo_de_uso">
+                    <h2>Termos de Uso</h2>
+                    <br>
+                    <p>
+                        Agradecemos a sua visita a aplicação Info Mãos Unidas, nesta janela (pop-up), estamos divulgando as regras de utilização durante a aplicação, sendo assim, dedique alguns minutos do seu tempo para ler o nosso Termos de Uso e aproveitar de forma consciente e segura tudo que o Info Mãos Unidas tem para oferecer.
+                        <br>
+                        <br>
+                        Resumidamente, o usuário encontrará informações sobre:                                
+                    </p>
+                    <p>
+                        <br>
+                        - Explicação dos termos presentes na aplicação;
+                        <br>
+                        - O funcionamento do serviço e as regras aplicáveis a ele;
+                        <br>
+                        - Responsabilidade da Info Mãos Unidas;
+                        <br>
+                        - Responsabilidade do Usuário;
+                        <br>
+                        - Direitos Autorais;
+                    </p>
+                    <br>
+                    <h3>Explicação dos termos presentes na aplicação</h3>
+                    <br>
+                    <p>
+                        Podemos apresentar durante a plataforma Info Mãos Unidas, termos ou palavras específicas que não são de conhecimento em geral. Entre elas:
+                        <br>
+                        <br>
+                        <b>Menu de Acessibilidade :</b> Um recurso que se encontra na plataforma, possui 4 opções cada um com tipo de ação específico, a 1ª opção [Pular para o menu de idioma], a 2ª opção [Pular para o menu principal], a 3ª opção [Pular para o conteúdo em destaque], e, a 4ª opção [ícone de ajustar contraste].
+                        <br>
+                        <br>
+                        <b>Menu Principal :</b> Também, se tratando de um recurso na plataforma, onde os Usuários podem escolher o que desejam visualizar, seja, a página inicial (conteúdos no primeiro momento), a página sobre nós (resumo da Info Mãos Unidas), a página cadastrar (registrar os usuários), e, a página login (ter acesso página com funções restritas).
+                        <br>
+                        <br>
+                        <b>Hiperlinks :</b> São páginas que possui uma interligação com outras páginas, a sua ação deve ser mediante ao clicar o botão esquerdo do mouse.
+                        <br>
+                        <br>
+                        <b>Login :</b> Ato de acessar uma página com funções restritas, sua ação acontecerá após submeter nos campos de textos, o e-mail e senha.
+                        <br>
+                        <br>
+                        <b>Campo de Texto :</b> São áreas localizadas na página para o Usuário submeter/informar algo que esteja sendo necessário para continuar em outras etapas.
+                        <br>
+                        <br>
+                        <b>Campo de Seleção :</b> São áreas localizadas na página para o Usuário selecionar/pressionar uma caixa ou círculos que contém uma alternativa que está de acordo.
+                        <br>
+                        <br>
+                        <b>Visitantes :</b> Todo e qualquer usuário que se encontra acessando de qualquer forma e meio a plataforma Info Mãos Unidas.
+                        <br>
+                        <br>
+                        <b>Usuários :</b> São pessoas que se encontra acessando de qualquer forma e meio a plataforma Info Mãos Unidas, porém, com uma diferenciação, os usuários são constantes na plataforma, podem ou não estar cadastrados, na plataforma Info Mãos Unidas, temos dois tipos de Usuários, Refugiado e Voluntário.
+                        <br>
+                        <br>
+                        <b>Cookies :</b> Arquivos que contém pequenos dados que são disponibilizados do navegador do usuário, podem ser informados a plataforma Info Mãos Unidas, como marca do Navegador, versão do Navegador, horário e data.
+                    </p>
+                    <br>
+                    <h3>O funcionamento do serviço e as regras aplicáveis a ele</h3>
+                    <br>
+                    <p>
+                        Na plataforma Info Mãos Unidas, todo o conteúdo apresentado foi desenvolvido buscando fontes e materiais de confiabilidade, através de uma pesquisa baseados em estudos sérios e respeitados.  Desde o primeiro momento, o próposito da plataforma é divulgar conteúdos informativos de alta qualidade, em conformidade, realizamos uma página com funções restritas para que a centralização de informações sejam compartilhadas instantaneamente à partir de um Cadastro, o Usuário Refugiado, poderá visualizar as informações que são apresentadas pelos seguintes usuários, neste caso, o Voluntário.
+                    </p>
+                    <br>
+                    <h3>Responsabilidade da Info Mãos Unidas</h3>
+                    <br>
+                    <p>
+                        Em nenhuma circunstância a Info Mãos Unidas, seus diretores, funcionários ou representantes serão responsabilizados por qualquer dano, direto, indireto, incidental, especial, punitivo ou imprevisto resultante de quaisquer <b>(i)</b> erros, equívocos ou imprecisão de conteúdo, <b>(ii)</b> danos pessoais ou materiais, de qualquer natureza, resultante do acesso do usuário e do uso do nosso website, <b>(iii)</b> qualquer acesso ou uso dos nossos servidores protegidos e/ou de toda e qualquer informação pessoal e/ou financeira ali armazenada que não tenha sido autorizado, <b>(iv)</b> qualquer interrupção ou cessação de transmissão de ou para o nosso website, <b>(v)</b> qualquer bug, vírus, cavalos-de-tróia ou afins que possam ser transmitidos para ou através do nosso website por quaisquer terceiros, e/ou <b>(vi)</b> quaisquer erros ou omissões em qualquer conteúdo ou qualquer perda ou dano de qualquer natureza sofrido em consequência do uso de qualquer conteúdo ou e-mail enviado, transmitido ou de qualquer outra forma disponibilizado através da Info Mãos Undias, seja por responsabilidade, contrato, ofensa ou qualquer outra hipótese legal, e independentemente de a empresa ser alertada sobre a possibilidade de tais danos. A limitação de responsabilidade acima descrita será aplicada na medida máxima permitida por lei na jurisdição competente.
+                        <br>
+                        <br>
+                        O usuário reconhece especificamente que a Info Mãos Unidas não será responsabilizada pelo material publicado pelo usuário (textos e comentários) ou pela conduta difamatória, ofensiva ou ilegal de quaisquer terceiros e que o risco de prejuízo ou dano resultante dos mesmos recai inteiramente sobre o usuário.
+                    </p>
+                    <br>
+                    <h3>Responsabilidade do Usuário</h3>
+                    <br>
+                    <p>
+                        A plataforma Info Mãos Unidas incentiva o uso responsável dos seus conteúdos e serviços. Portanto, você se compromete a não enviar ou transmitir conteúdo algum que:
+                        <br>
+                        <br>
+                        - Realizar qualquer tipo de ação que tente invadir, hacker, destruir ou prejudicar a estrutura da aplicação. Incluindo-se, ao envio de vírus de computador, de ataques de DDOS, de acesso indevido por falhas da mesma ou quaisquer outras forma e meio.
+                        <br>
+                        - De não realizar divulgação indevida nos comentários da aplicação como, conteúdo com SPAM, vírus ou quaisquer outros que não seja pertinente a discussão do conteúdo divulgado.
+                        <br>
+                        - Da proibição em reproduzir qualquer conteúdo da plataforma sem autorização expressa, podendo repsonder civil e criminalmente pelo mesmo.
+                        <br>
+                        - Com a Política de Privacidade da aplicação, assim como tratamos os dados referentes ao cadastro, podendo a qualquer momento e forma, requerer a exclusão dos seus dados.
+                    </p>
+                    <br>
+                    <h3>Direitos Autorais</h3>
+                    <br>
+                    <p>
+                        É terminantemente vedada a distribuição, representação, publicação, uso comercial e/ou utilização de materiais (marcas, obras e/ou criações) disponibilizadas na plataforma Info Mãos Unidas, no todo ou em parte, sem a prévia e expressa autorização da Info Mãos Unidas.
+                    </p>
+                    <a class="close" href="javascript:;">Fechar</a>
+                </div>
+                <div class="overlay"></div>
+
+                <div class="politica_privacidade">
+                    <h2>Política de Privacidade</h2>
+                    <br>
+                    <p>
+                        Agradecemos a sua visita a aplicação Info Mãos Unidas, nesta janela (pop-up), estamos divulgando as regras de utilização durante a aplicação, sendo assim, dedique alguns minutos do seu tempo para ler a nossa Política de Privacidade e aproveitar de forma consciente e segura tudo que o Info Mãos Unidas tem para oferecer.
+                        <br>
+                        <br>
+                        Resumidamente, o usuário encontrará informações sobre:                                
+                    </p>
+                    <p>
+                        <br>
+                        - Informações transmitidas automaticamente;
+                        <br>
+                        - Informações Pessoais;
+                        <br>
+                        - Distribuição das Informações Coletadas;
+                        <br>
+                        - Uso de cookies;
+                    </p>
+                    <br>
+                    <h3>Informações transmitidas automaticamente</h3>
+                    <br>
+                    <p>
+                        Ao navegar na Internet, algumas informações transmitidas automaticamente entre computadores são coletadas como parte das exigências tecnológicas inerentes à navegação, para fins estatísticos. É impossível, apenas através destas informações, identificar quem navega pela plataforma Info Mãos Unidas. Apenas o provedor de Internet utilizado por você possui esta informação. As informações coletadas as quais nos referimos são:
+                        <br>
+                        <br>
+                        <b>1.</b> O nome de domínio de Internet (por exemplo: teste.com.br), caso você utilize uma conta privada de acesso à Internet, ou, caso você tenha acesso através de uma universidade, por exemplo, e o endereço IP (que é um número atribuído automaticamente ao seu computador pelo seu provedor de acesso (todas as vezes que navegar na Internet) com o qual você tem acesso ao nosso site;
+                        <br>
+                        <br>
+                        <b>2.</b> O tipo de navegador e de sistema para acessar nosso site;
+                        <br>
+                        <br>
+                        <b>3.</b> Data e hora que você acessa nosso site;
+                        <br>
+                        <br>
+                        <b>4.</b> As páginas que você visita dentro da plataforma Info Mãos Unidas;
+                        <br>
+                        <br>
+                        <b>5.</b> E, se você acessa nosso site a partir de outro site, o endereço desse site.
+                        <br>
+                        <br>
+                        Esta troca de informações é necessária para que o servidor lhe transmita um arquivo compatível com o equipamento informático que você utiliza.
+                    </p>
+                    <br>
+                    <h3>Informações Pessoais</h3>
+                    <br>
+                    <p>
+                        Algumas informações pessoais são obtidas quando você se registra, preenchendo um formulário de cadastro. Durante o processo de registro, a plataforma Info Mãos Unidas pergunta seu nome, sobrenome, nacionalidade e endereço de e-mail. Quanto mais informações corretas você fornecer, melhor será a personalização da sua experiência.
+                        <br>
+                        <br>
+                        As informações pessoais transmitidas não são reveladas sem a sua autorização prévia. Não vendemos, alugamos ou compartilhamos com terceiros os seus dados pessoais. Essas informações servem exclusivamente para criar um perfil dos usuários e permitem melhorar a qualidade dos nossos serviços, ao mesmo tempo em que possibilitam aos nossos colaboradores direcionar conteúdos com maior eficácia.
+                    </p>
+                    <br>
+                    <h3>Distribuição das Informações Coletadas</h3>
+                    <br>
+                    <p>
+                        Ao se registrar na plataforma Info Mãos unidas, você poderá, visualizar as funções restritas que estão no seu perfil. Somente a equipe da Info Mãos Unidas enviará a você esses comunicados.
+                    </p>
+                    <br>
+                    <h3>Uso de cookies</h3>
+                    <br>
+                    <p>
+                        Um cookie é um pequeno arquivo que seu navegador salva no seu disco rígido. Nossos cookies não contêm nenhuma informação pessoal identificável, mas nos permitem oferecer determinadas funcionalidades que facilitam a navegação. Por exemplo, usamos cookies para armazenar a sua identificação de usuário, caso tenha acesso à área restrita na plataforma Info Mãos Unidas, e suas preferências, para que você não tenha que voltar a digitá-las em sua próxima visita. Desta forma, oferecemos-lhe um serviço personalizado.
+                        <br>
+                        <br>
+                        Em geral, os cookies são utilizados para:
+                        <br>
+                        <br>
+                        - Proporcionar serviços diferenciados, lembrando quem você é e quais são os seus hábitos de navegação, além de acessar as informações do seu cadastro na Plataforma Info Mãos Unidas (armazenadas em nossos servidores);
+                        <br>
+                        <br>
+                        - Calcular a dimensão da audiência;
+                        <br>
+                        <br>
+                        - Medir certos padrões de navegação, mapeando quais áreas da plataforma Info Mãos Unidas você visitou e seus hábitos de visita como um todo. Usamos essa informação para verificar a rotina de navegação dos nossos usuários e, assim, oferecer conteúdo e/ou serviços cada vez mais personalizados;
+                        <br>
+                        <br>
+                        - Facilitar e agilizar o preenchimento de formulários. As informações contidas nos cookies de cada usuário podem ser utilizadas para preencher previamente os formulários de coleta de dados existentes na plataforma Info Mãos Unidas.
+                    </p>
+                    <a class="close" href="javascript:;">Fechar</a>
+                </div>
+                <div class="overlay"></div>
+
+                <button type="submit" class="button_form">Cadastre-se</button>
+            </form>
+        </div>
+    </section>
+
+    <div class="box_login">
+        <p>
+            Já tem uma conta? <a href="{{ url_for('auth.pt_login_voluntario') }}">Fazer login</a>
+        </p>
+    </div>
+
+</main>
+
+<footer>
+    <div class="logo_footer clear">
+        <img src="{{ url_for('static', filename='img/logo/logo.png') }}">
+    </div>
+    <p>Copyright &copy; 2021 - Todos os direitos reservados pela Info Mãos Unidas</p>
+</footer>
+
+<script src="js/contrast.class.js"></script>
+<script>
+    $('#show_termo_de_uso').on('click', function() {
+        $('.overlay, .termo_de_uso').show();
+    });
+
+    $('.overlay, .close').on('click', function() {
+        $('.overlay, .termo_de_uso').hide();
+    });
+
+    $(document).on('keydown', function(event) {
+        if (event.keyCode == 27) {
+            $('.overlay, .termo_de_uso').hide();
+        }
+    });
+</script>
+<script>
+    $('#show_politica').on('click', function() {
+        $('.overlay, .politica_privacidade').show();
+    });
+
+    $('.overlay, .close').on('click', function() {
+        $('.overlay, .politica_privacidade').hide();
+    });
+
+    $(document).on('keydown', function(event) {
+        if (event.keyCode == 27) {
+            $('.overlay, .politica_privacidade').hide();
+        }
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,92 @@
+/* Adicionando a imagem no plano de fundo, centralizando e especificando o tamanho */
+
+.background-image {
+    height: 100vh;
+    background-image: url('../../img/background/road_3200px.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;   
+}
+
+/* Definindo a camada de filtro com efeito de desfoque no elemento atrás */
+
+.filter {
+    height: 100vh;
+    background-color: rgba(200, 172, 116, 0.5);
+    backdrop-filter: blur(2px);
+}
+
+main {
+    /* background-color: lightsalmon; */
+    height: 70vh;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.box-flags {
+    /* background-color: mediumvioletred; */
+    height: inherit;
+    width: 50%;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+.box-flags h1 {
+    /* background-color: limegreen; */
+    text-align: center;
+    font-size: 28px;
+    margin: 0px;
+    padding: 0px;
+    font-size: 42px;
+}
+
+.flags {
+    /* background-color: lightcoral; */
+    display: block;
+    height: 64px;
+    width: 64px;
+    margin: 0 auto;
+    padding-top: 20%;
+}
+
+footer {
+    /* background-color: lightskyblue; */
+    height: 10vh;
+    width: 90%;
+    margin: 0 auto;
+    /* padding-top: 50px; */
+}
+
+footer .logo_footer {
+    text-align: center;
+}
+
+footer .logo_footer img {
+    width: 56px;
+    height: 56px;
+}
+
+footer p {
+    text-align: center;
+    font-size: 12px;
+}
+
+@media screen and (max-width: 2100px) {
+    .background-image {
+        background-image: url('../../img/background/road_1920px.jpg');
+    }
+}
+
+
+@media screen and (max-width: 1280px) {
+    .background-image {
+        background-image: url('../../img/background/road_1280px.jpg');
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .background-image {
+      background-image: url("../../img/background/road_640px.jpg");
+    }
+}

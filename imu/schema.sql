@@ -1,0 +1,29 @@
+DROP TABLE IF EXISTS refugiado;
+DROP TABLE IF EXISTS voluntario;
+DROP TABLE IF EXISTS workshop;
+
+CREATE TABLE refugiado (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT NOT NULL,
+    sobrenome TEXT NULL,
+    nacionalidade TEXT NOT NULL,
+    email TEXT UNIQUE NOT NULL,
+    senha TEXT NOT NULL
+);
+
+CREATE TABLE voluntario (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT NOT NULL,
+    sobrenome TEXT NULL,
+    email TEXT UNIQUE NOT NULL,
+    senha TEXT NOT NULL
+);
+
+CREATE TABLE workshop (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    author_id INTEGER NOT NULL,
+    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    title TEXT NOT NULL,
+    body TEXT NOT NULL,
+    FOREIGN KEY (author_id) REFERENCES voluntario (id)
+);

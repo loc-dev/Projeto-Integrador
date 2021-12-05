@@ -1,0 +1,336 @@
+body {
+    background-color: rgba(200,172,116, 0.6);
+}
+
+main {
+    /* background-color: lightsalmon; */
+    height: auto;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.line_menu {
+    border: 2px solid #AE7236;
+    box-shadow: 0px 2px 6px black;
+    width: 95%;
+    margin: 0 auto;
+}
+
+main h1 {
+    margin: 25px 25px;
+    color: #AE6721;
+}
+
+.volunteer_form_register {
+    /* background-color:cornflowerblue; */
+    height: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.volunteer_box_register {
+    background-color: #fff;
+    border: 4px solid #AE7236;
+    border-radius: 18px;
+    height: 59vh;
+    width: 26vw;
+    margin: auto auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 14px;
+}
+
+.volunteer {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/***
+Formulário - Campo Nome 
+***/
+
+.field_name {
+    padding: 0;
+    border: none;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 16px;
+}
+
+.field_name input {
+    /* background-color: coral; */
+    border: none;
+    border-bottom: 1px solid black;
+    border-radius: 4px;
+    width: 90%;
+    padding: 8px;
+}
+
+.field_name input:focus {
+    border-color: #FFA317;
+    box-shadow: 0 0 10px #FFA317;
+    border-radius: 4px;
+    outline: none;
+}
+
+/***
+Formulário - Campo Sobrenome
+***/
+
+.field_surname {
+    padding: 0;
+    border: none;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 16px;
+}
+
+.field_surname input {
+    /* background-color: coral; */
+    border: none;
+    border-bottom: 1px solid black;
+    border-radius: 4px;
+    width: 90%;
+    padding: 8px;
+}
+
+.field_surname input:focus {
+    border-color: #FFA317;
+    box-shadow: 0 0 10px #FFA317;
+    border-radius: 4px;
+    outline: none;
+}
+
+/***
+Formulário - Campo E-mail
+***/
+
+.field_email {
+    padding: 0;
+    border: none;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 16px;
+}
+
+.field_email input {
+    /* background-color: coral; */
+    border: none;
+    border-bottom: 1px solid black;
+    border-radius: 4px;
+    width: 90%;
+    padding: 8px;
+}
+
+.field_email input:focus {
+    border-color: #FFA317;
+    box-shadow: 0 0 10px #FFA317;
+    border-radius: 4px;
+    outline: none;
+}
+
+/***
+Formulário - Campo Senha
+***/
+
+.field_password {
+    padding: 0;
+    border: none;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 16px;
+}
+
+.field_password input {
+    /* background-color: coral; */
+    border: none;
+    border-bottom: 1px solid black;
+    border-radius: 4px;
+    width: 90%;
+    padding: 8px;
+}
+
+.field_password input:focus {
+    border-color: #FFA317;
+    box-shadow: 0 0 10px #FFA317;
+    border-radius: 4px;
+    outline: none;
+}
+
+.flash {
+    margin: 1em 0;
+    padding: 1em;
+    background: #fff;
+    border: 1px solid red;
+    color: red;
+    font-weight: bold;
+}
+
+.volunteer p {
+    font-size: 14px;
+}
+
+.volunteer .termos_politica a {
+    color: #AE6721;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.volunteer .termos_politica a:hover {
+    border-bottom: 2px solid #AE6721;
+    transition: .1s;
+}
+
+.button_form {
+    background-color: #ffffffaa;
+    border: none;
+    border: 1px solid black;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 12px;
+    padding-left: 12px;
+    width: 12vw;
+    border-radius: 18px;
+    color: #AE6721;
+    font-weight: bold;
+}
+
+.button_form:hover {
+    background-color: #AE6721;
+    color: #ffff;
+    font-weight: bold;
+}
+
+.button_form:focus {
+    border-color: #FFA317;
+    box-shadow: 0 0 18px #FFA317;
+    border-radius: 18px;
+    outline: none;
+}
+
+/***
+Pop-up para Termos de Uso
+***/
+
+.termo_de_uso {
+    background-color: #FFF;
+    border: 4px solid #AE7236;
+    height: auto;
+    padding: 10px;
+    width: 70vw;
+    position: absolute;
+    top: 15%;
+    left: 30%;
+    margin: -75px 0 0 -200px;
+    z-index: 1;
+    text-align: justify;
+}
+  
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+}
+  
+.termo_de_uso, .overlay {
+    display: none;
+}
+  
+.termo_de_uso .close {
+    background-color: #FF1A2D;
+    color: #FFF;
+    padding: 5px;
+    position: absolute;
+    right: -25px;
+    top: -12px;
+}
+
+/***
+Pop-up para Política de Privacidade
+***/
+
+.politica_privacidade{
+    background-color: #FFF;
+    border: 4px solid #AE7236;
+    height: auto;
+    padding: 10px;
+    width: 70vw;
+    position: absolute;
+    top: 15%;
+    left: 30%;
+    margin: -75px 0 0 -200px;
+    z-index: 1;
+    text-align: justify;
+}
+  
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+}
+  
+.politica_privacidade, .overlay {
+    display: none;
+}
+  
+.politica_privacidade .close {
+    background-color: #FF1A2D;
+    color: #FFF;
+    padding: 5px;
+    position: absolute;
+    right: -25px;
+    top: -12px;
+}
+
+.box_login {
+    /* background-color: lightgreen; */
+    height: 10vh;
+    width: auto;
+    text-align: center;
+    padding: 30px;
+    color: #AE6721;
+}
+
+.box_login a {
+    color: #AE6721;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.box_login a:hover {
+    border-bottom: 2px solid #AE6721;
+    transition: .1s;
+}
+
+footer {
+    /* background-color: lightskyblue; */
+    height: 12vh;
+    width: auto;
+    margin: 0 auto;
+    /* padding-top: 50px; */
+}
+
+footer .logo_footer {
+    text-align: center;
+}
+
+footer .logo_footer img {
+    width: 56px;
+    height: 56px;
+}
+
+footer p {
+    text-align: center;
+    font-size: 12px;
+}

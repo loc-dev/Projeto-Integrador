@@ -1,0 +1,89 @@
+{% extends 'pt_br/model.html' %}
+{% block title %}Cadastrar{% endblock %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/partials/page-cadastrar.css') }}"> <!-- Definindo a Formatação para página Cadastrar -->
+{% endblock %}
+
+{% block body %}
+<header>
+
+    <nav id="menu_acessibilidade">
+        <ul class="nav-list">
+            <li><a role="link" href="#menu_idioma">Pular para o menu de idioma</a></li>
+            <li><a role="link" href="#menu">Pular para o menu principal</a></li>
+            <li><a role="link" href="#conteudo">Pular para o conteúdo em destaque</a></li>
+            <li><a role="option" href="#altocontraste" id="altocontraste" accesskey="3" onclick="window.toggleContrast()" onkeydown="window.toggleContrast()"><i class="fas fa-adjust"></i></a></li>
+        </ul>
+    </nav>
+
+    <nav id="menu_idioma">
+        <ul class="nav-list">
+            <li><a role="link" href="#">Inglês</a></li>
+            <li><a role="link" href="{{ url_for('content.es_cadastrar') }}">Espanhol</a></li>
+            <li><a role="link" href="#">Francês</a></li>
+            <li><a role="link" href="{{ url_for('content.pt_cadastrar') }}">Português</a></li>
+        </ul>
+    </nav>
+
+    <a role="link" class="logo" href="{{ url_for('content.pt_home') }}"><img alt="Logo da página Info Mãos Unidas" src="{{ url_for('static', filename='img/logo/logo.png') }}"></a>
+
+    <nav id="menu">
+        <ul class="nav-list">
+            <li><a role="link" href="{{ url_for('content.pt_home') }}">Home</a></li>
+            <li><a role="link" href="{{ url_for('content.pt_sobre') }}">Sobre nós</a></li>
+            <li><a role="link" href="{{ url_for('content.pt_cadastrar') }}">Cadastrar</a></li>
+            <li><a role="link" href="{{ url_for('content.pt_login') }}">Login</a></li>
+        </ul>
+    </nav>
+
+</header>
+
+<main>
+
+    <hr class="line_menu">
+    <h1 id="conteudo">Cadastrar</h1>
+    <section class="refugee_volunteer_register">
+        <div class="refugee_register">
+            <div class="div-effect-text">
+                <a href="{{ url_for('auth.pt_cadastro_refugiado') }}">
+                    <h2>Refugiado</h2>
+                    <p>
+                        Ao cadastrar como Refugiado na Info Mãos Unidas, você terá um perfil somente para visualizar as publicações que os voluntários estão registrando na plataforma.
+                    </p>
+                    <br>
+                    <p>
+                        Em Breve, vamos oferecer a possibilidade do seu perfil conectar com outros refugiados, sendo possível, compartilhar informações entre vocês.
+                    </p>
+                </a>
+            </div>
+        </div>
+                        
+        <div class="volunteer_register">
+            <div class="div-effect-text">
+                <a href="{{ url_for('auth.pt_cadastro_voluntario') }}">
+                    <h2>Voluntário</h2>
+                    <p>
+                        Ao cadastrar como Voluntário na Info Mãos Unidas, você terá o papel de auxiliar os refugiados com iniciativas seja elas públicas ou privadas.
+                    </p>
+                    <br>
+                    <p>
+                        Você tem a possibilidade de divulgar Workshops seja eles uma programação online ou presencial, assim, os refugiados serão informados a cada momento, as novidades que estão ocorrendo!
+                    </p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="logo_footer clear">
+        <img src="{{ url_for('static', filename='img/logo/logo.png') }}">
+    </div>
+    <p>Copyright &copy; 2021 - Todos os direitos reservados pela Info Mãos Unidas</p>
+</footer>
+
+<script src="{{ url_for('static', filename='js/carousel.js') }}"></script>
+
+{% endblock %}

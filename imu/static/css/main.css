@@ -1,0 +1,23 @@
+/* Formatação Geral */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    /* background-color: lightblue; */
+    height: 100vh;
+}
+
+body,
+input,
+button,
+textarea {
+    font-weight: normal;
+    font-family:'Roboto';
+    font-size: 1rem; /* 16px */
+    color: black;
+}

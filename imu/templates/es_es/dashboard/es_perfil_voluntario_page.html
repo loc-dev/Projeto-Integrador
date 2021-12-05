@@ -1,0 +1,103 @@
+{% extends 'es_es/model.html' %}
+{% block title %}Perfil Voluntario{% endblock %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/partials/page-perfil-voluntario.css') }}"> <!-- Definindo a Formatação para página de Perfil de Voluntário -->
+{% endblock %}
+
+{% block body %}
+<header>
+
+    <nav id="menu_acessibilidade">
+        <ul class="nav-list">
+            <li><a role="link" href="#menu_idioma">Saltar al menú de idiomas</a></li>
+            <li><a role="link" href="#menu">Saltar al menú</a></li>
+            <li><a role="link" href="#conteudo">Saltar al contenido destacado</a></li>
+            <li><a role="option" href="#altocontraste" id="altocontraste" onclick="window.toggleContrast()" onkeydown="window.toggleContrast()"><i class="fas fa-adjust"></i></a></li>
+        </ul>
+    </nav>
+
+    <nav id="menu_idioma">
+        <ul class="nav-list">
+            <li><a role="link" href="#">Inglés</a></li>
+            <li><a role="link" href="{{ url_for('dashboard.es_edit_voluntario', id=g.voluntario['id']) }}">Español</a></li>
+            <li><a role="link" href="#">Francés</a></li>
+            <li><a role="link" href="{{ url_for('dashboard.pt_edit_voluntario', id=g.voluntario['id']) }}">Portugués</a></li>
+        </ul>
+    </nav>
+
+    <a role="link" class="logo" href="{{ url_for('content.es_home') }}"><img alt="Logo da página Info Mãos Unidas" src="{{ url_for('static', filename='img/logo/logo.png') }}"></a>
+
+    <nav id="menu">
+        <ul class="nav-list">
+            {% if g.voluntario %}
+            <li><a role="link" href="{{ url_for('dashboard.es_workshop_voluntario') }}">Talleres</a></li>
+            <li><a role="link" href="{{ url_for('dashboard.es_edit_voluntario', id=g.voluntario['id']) }}">{{ g.voluntario['nome'] }}</a></li>
+            <li><a role="link" href="{{ url_for('auth.es_logout_voluntario') }}">Salir</a></li>
+            {% else %}
+            <li><a role="link" href="{{ url_for('content.es_cadastrar') }}">Crear una cuenta</a></li>
+            <li><a role="link" href="{{ url_for('content.es_login') }}">Iniciar sesión</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+</header>
+
+<main>
+
+    <hr class="line_menu">
+    <h1 id="conteudo">Perfil</h1>
+    <section class="volunteer_mini_profile">
+        <div class="volunteer_box_profile">
+            <h2>Perfil Completo</h2>
+            <br>
+            <form method="post" class="volunteer">
+
+                <fieldset class="field_name">
+                    <label for="nome">Nombre ( * )</label>
+                    <input type="text" name="nome" id="nome" placeholder="" value="{{ request.form['nome'] or g.voluntario['nome'] }}" required>
+                </fieldset>
+
+                <fieldset class="field_surname">
+                    <label for="sobrenome">Apellido</label>
+                    <input type="text" name="sobrenome" id="sobrenome" placeholder="" value="{{ request.form['sobrenome'] or g.voluntario['sobrenome'] }}">
+                </fieldset>
+
+                <fieldset class="field_email">
+                    <label for="email">Correo electrónico ( * )</label>
+                    <input type="email" name="email" id="email" placeholder="" value="{{ request.form['email'] or g.voluntario['email'] }}" required>
+                </fieldset>
+                {% for message in get_flashed_messages() %}
+                    <div class="flash">{{ message }}</div>
+                {% endfor %}
+
+                <button type="submit" class="button_form">Guardar</button>
+                
+            </form>
+        </div>
+    </section>
+
+    <section class="volunteer_account">
+        <div class="volunteer_box_account_delete">
+            <h2>Eliminar cuenta</h2>
+            <br>
+            <form action="{{ url_for('dashboard.es_delete_voluntario', id=g.voluntario['id']) }}" method="post">
+                <button type="submit" class="button_form_delete" onclick="return confirm('¿Estás seguro de que deseas eliminar tu cuenta?');">
+                    Eliminar
+                </button>
+            </form>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="logo_footer clear">
+        <img src="{{ url_for('static', filename='img/logo/logo.png') }}">
+    </div>
+    <p>&copy; Copyright 2021 por Info Mãos Unidas</p>
+</footer>
+
+<script src="js/contrast.class.js"></script>
+
+{% endblock %}
